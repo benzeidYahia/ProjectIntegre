@@ -7,11 +7,10 @@ import {PrimeNGConfig} from 'primeng/api';
 })
 export class AppComponent implements OnInit{
 
-    layoutMode = 'slim';
+    layoutMode = 'Overlay';
 
-    lightMenu = true;
-
-    topbarColor = 'layout-topbar-dark';
+    lightMenu = false;
+    topbarColor = 'layout-topbar-bluegrey';
 
     inlineUser = false;
     inlineUser2 = false;

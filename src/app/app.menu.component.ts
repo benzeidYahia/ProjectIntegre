@@ -3,9 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
 import {LoginService} from './controller/service/login.service';
-import {Prof} from './controller/Model/prof.model';
-import {Admin} from './controller/Model/admin.model';
-import {Etudiant} from './controller/Model/etudiant.model';
+
 
 @Component({
     selector: 'app-menu',
@@ -45,29 +43,6 @@ export class AppMenuComponent implements OnInit {
         this.service.model = value;
     }
 
-    get prof(): Prof {
-        return this.service.prof;
-    }
-
-    set prof(value: Prof) {
-        this.service.prof = value;
-    }
-
-    get admin(): Admin {
-        return this.service.admin;
-    }
-
-    set admin(value: Admin) {
-        this.service.admin = value;
-    }
-
-    get etudiant(): Etudiant {
-        return this.service.etudiant;
-    }
-
-    set etudiant(value: Etudiant) {
-        this.service.etudiant = value;
-    }
 
     ngOnInit() {
 

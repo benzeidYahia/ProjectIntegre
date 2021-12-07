@@ -4,7 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
 import { AppConfigComponent } from './app.config.component';
-import { AppTopBarComponent } from './app.topbar.component';
+import { AppTopBarComponent } from './view/TopBar/app.topbar.component';
 import { AppRightMenuComponent } from './app.right-menu.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppMenuComponent } from './app.menu.component';

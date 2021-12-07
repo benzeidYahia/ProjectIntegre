@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8036/learn/'
+  baseUrl: 'http://localhost:8036/',
+    baseApi: 'http://localhost:8036',
+    memberUrl: 'http://localhost:8036/member/',
+    juryUrl: 'http://localhost:8036/jury/',
+    publicUrl: 'http://localhost:8036/public/',
+    adminUrl: 'http://localhost:8036/admin/',
 };
 
 /*

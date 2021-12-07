@@ -1,9 +1,11 @@
+/* tslint:disable:variable-name */
 import { Injectable } from '@angular/core';
-import {Prof} from '../model/prof.model';
-import {Admin} from '../model/admin.model';
-import {Etudiant} from '../model/etudiant.model';
+
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Member} from '../model/member';
+import {JuryDVE} from '../model/jury-dve';
+import {SuperAdminDVE} from '../model/super-admin-dve';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +13,20 @@ import {Observable} from 'rxjs';
 export class LoginService {
 
 
-  private url = 'http://localhost:8036/learn/';
-  private _prof: Prof;
-  private _admin: Admin;
-  private _etudiant: Etudiant;
+  private _member: Member;
+  private _user: any[];
+   private _jury: JuryDVE;
+  private _admin: SuperAdminDVE;
   private _model: any[];
 
 
+  get user(): any[] {
+    return this._user;
+  }
+
+  set user(value: any[]) {
+    this._user = value;
+  }
   get model(): any[] {
     return this._model;
   }
@@ -26,46 +35,53 @@ export class LoginService {
     this._model = value;
   }
 
-  get prof(): Prof {
-    if (this._prof == null){
-      this._prof = new Prof();
+
+  get member(): Member {
+    if (this._member == null){
+      this._member = new Member();
     }
-    return this._prof;
+    return this._member;
   }
 
-  set prof(value: Prof) {
-    this._prof = value;
+  set member(value: Member) {
+    this._member = value;
   }
 
-  get admin(): Admin {
+  get jury(): JuryDVE {
+    if (this._jury == null){
+      this._jury = new JuryDVE();
+    }
+    return this._jury;
+  }
+
+  set jury(value: JuryDVE) {
+    this._jury = value;
+  }
+
+  get admin(): SuperAdminDVE {
+    if (this._admin == null){
+      this._admin = new SuperAdminDVE();
+    }
     return this._admin;
   }
 
-  set admin(value: Admin) {
+  set admin(value: SuperAdminDVE) {
     this._admin = value;
   }
 
-  get etudiant(): Etudiant {
-    return this._etudiant;
-  }
-
-  set etudiant(value: Etudiant) {
-    this._etudiant = value;
-  }
-
-  public findProf(username: string, password: string): Observable<Prof>
+  public findMember(username: string, password: string): Observable<Member>
   {
-    return this.http.get<Prof>('http://localhost:8036/learn/prof/login/' + username + '/password/' + password);
+    return this.http.get<Member>('http://localhost:8036/member/member/login/' + username + '/password/' + password);
   }
 
-  public findEtudiant(username: string, password: string): Observable<Etudiant>
+  public findJury(username: string, password: string): Observable<JuryDVE>
   {
-    return this.http.get<Etudiant>('http://localhost:8036/learn/etudiant/login/' + username + '/password/' + password);
+    return this.http.get<JuryDVE>('http://localhost:8036/jury/jury/login/' + username + '/password/' + password);
   }
 
-  public findAdmin(username: string, password: string): Observable<Admin>
+  public findAdminDVE(username: string, password: string): Observable<SuperAdminDVE>
   {
-    return this.http.get<Admin>('http://localhost:8036/learn/admin/login/' + username + '/password/' + password);
+    return this.http.get<SuperAdminDVE>('http://localhost:8036/admin/superadmin/login/' + username + '/password/' + password);
   }
 
   constructor(private http: HttpClient) { }

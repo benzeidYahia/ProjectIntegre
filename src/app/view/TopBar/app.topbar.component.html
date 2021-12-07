@@ -1,0 +1,33 @@
+<div class="layout-topbar">
+
+    <a class="layout-topbar-logo" href="#">
+        <span id="topbar-logo" style="color: white; font-family: 'Lucida Bright'"><h1>UIR Clubs</h1></span>
+    </a>
+
+
+    <ul  class="topbar-menu">
+
+        <li [ngClass]="{'active-topmenuitem fadeInDown': appMain.topbarUserMenuActive}" class="user-profile"
+            style="margin-top: 4px">
+            <a (click)="appMain.onTopbarUserMenuButtonClick($event)" *ngIf="!app.inlineUser" href="#">
+                <div class="layout-profile-userinfo">
+                    <span class="layout-profile-name" [routerLink]="['/pages/login-admin']" ><b><h4>Sign in </h4></b></span>
+                </div>
+
+            </a>
+        </li>
+        <li [ngClass]="{'active-topmenuitem fadeInDown': appMain.topbarNotificationMenuActive}" class="user-profile"
+            style="margin-top: 4px">
+            <a (click)="appMain.onTopbarNotificationMenuButtonClick($event)" *ngIf="!app.inlineUser" href="#">
+                <div class="layout-profile-userinfo">
+                    <span class="layout-profile-name" [routerLink]="['/pages/inscription']" ><b><h4>Sign up</h4></b></span>
+                </div>
+            </a>
+        </li>
+
+
+    </ul>
+
+
+
+</div>

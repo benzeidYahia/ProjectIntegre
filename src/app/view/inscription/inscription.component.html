@@ -1,0 +1,55 @@
+<p-toast></p-toast>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<p-toast></p-toast>
+<div class="main">
+
+    <div class="container">
+        <form method="POST" class="appointment-form" id="appointment-form">
+            <h2>Registration form</h2>
+            <div class="form-group-1">
+                <input type="text" name="prenom" id="Firstname" placeholder="Firstname"
+                       [(ngModel)]="member.prenom"  required/>
+                <input type="text" name="nom" id="Lastname" placeholder="Lastname" [(ngModel)]="member.nom" required/>
+                <input type="email" name="username" id="gmail" placeholder="email" [(ngModel)]="member.login" required
+                />
+                <input type="number" name="phone_number" id="phone_number" placeholder="Numero Etudiant" [(ngModel)]="member.numeroEtudiant" required
+                />
+
+                <input type="text" name="phone_number" id="address" placeholder="Fillier" [(ngModel)]="member.fillier" required
+                />
+                <input type="text" name="phone_number" id="city" placeholder="Level" [(ngModel)]="member.niveau" required
+                />
+                <!--                &lt;!&ndash;                <input type="number" name="phone_number" id="city" placeholder="Your city" required [(ngModel)]="etudiant."/>&ndash;&gt;-->
+                <!--                <p-dropdown [options]="locality" [(ngModel)]="etudiant.teacherLocality" optionLabel="name" style="width: 100% !important;-->
+                <!--                             margin-bottom: 2%;" placeholder="">-->
+                <!--                </p-dropdown>-->
+
+
+
+            </div>
+            <div class="form-submit">
+                <button type="button" name="submit" style="background-color: #4e7988; float: right" id="submit"
+                       (click)="save()" class="submit" >Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
