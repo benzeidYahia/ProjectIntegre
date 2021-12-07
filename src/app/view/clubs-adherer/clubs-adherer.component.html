@@ -1,0 +1,49 @@
+
+<div class="container emp-profile p-card p-grid " style="margin-top: 2%;margin-left: 2%;margin-right: 2%">
+
+            <div class="p-col-5" style="background-color: #4e7988">
+                    <img style="width: 100%" src="{{this.clubsMember.clubs.image}}" alt=""/>
+
+            </div>
+
+            <div class="p-col-7">
+                <div class="profile-head" style="margin-top: 2%">
+
+                    <h1 style="float: inside;color: #6c9aaa">{{this.clubsMember.clubs.libelle}}</h1>
+                    <h3 style="float: inside">Categorie :<b style="color: #6c9aaa">{{this.clubsMember.clubs.categorie}}</b></h3>
+
+                    <p>{{this.clubsMember.clubs.description}}</p>
+                </div>
+            </div>
+    <div class="p-col-12">
+        <p-dataView #dv [paginator]="true" [rows]="4" [value]="itemsActivite" filterBy="name"
+                     layout="grid">
+
+            <ng-template pTemplate="header">
+                <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+
+                    <h2><b style="color: #4e7988">Clubs Activities</b></h2>
+                    <div style="float: right"> <p-button [style.visibility]="this.clubsMember.status == 'president'? 'visible': 'hidden'" type="submit" style="float: right; width: 200px; color: white"  class="profile-edit-btn" >Add Activitie</p-button>
+                </div>
+                </div>
+            </ng-template>
+            <ng-template let-activite pTemplate="gridItem">
+                <div class="p-col-12 p-md-4">
+                    <div class="product-grid-item card">
+                        <div class="product-grid-item-content">
+                            <div class="product-name">{{activite.nomActivite}}</div>
+                            <img *ngIf="activite.image" [src]="activite.image " >
+                            <img *ngIf="!activite.image "
+                                 src="./assets/layout/images/notfound.jpg" >
+
+
+                            <div class="product-description">{{activite.description}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+
+</div>
