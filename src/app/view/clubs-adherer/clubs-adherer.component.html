@@ -14,6 +14,9 @@
                     <h3 style="float: inside"><b style="color: black">Categorie :</b><b style="color: #6c9aaa">{{this.clubsMember.clubs.categorie}}</b></h3>
 
                     <p>{{this.clubsMember.clubs.description}}</p>
+                    <button (click)="inscrit()" [style.visibility]=" clubsMember.status == 'president'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" style="float: right" icon="pi pi-plus" label="List Inscrit" pButton
+                            pRipple ></button>
+
                 </div>
             </div>
 </div>
@@ -51,7 +54,7 @@
 
     <div class="container p-col-7 p-card p-grid " style="margin-top: 2%; float: right">
         <p-dataView #dv [paginator]="true" [rows]="4" [value]="itemsActivite" filterBy="name"
-                     layout="list">
+                     layout="list" style="width: 300%">
 
             <ng-template pTemplate="header">
                 <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
@@ -65,7 +68,7 @@
                 <div class="p-col-12">
 
                             <div class="product-list-item">
-                                <img *ngIf="activite.image" [src]="activite.image " >
+                                <img *ngIf="activite.image" [src]="activite.image" >
                                 <img *ngIf="!activite.image "
                                      src="./assets/layout/images/notfound.jpg" >
                                 <div class="product-list-detail" >

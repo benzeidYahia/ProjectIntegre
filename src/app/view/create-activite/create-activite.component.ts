@@ -20,12 +20,16 @@ export class CreateActiviteComponent implements OnInit {
               private confirmationService: ConfirmationService,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
+  public onfileselected(file){
+    console.log(file);
+  }
   onUpload(event) {
     for (const file of event.files) {
       this.uploadedFiles.push(file);
     }
 
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+    console.log(event);
   }
   get listClbs(): Array<Clubs> {
     return this.service.listClbs;

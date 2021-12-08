@@ -149,6 +149,7 @@ import { MemberProfilComponent } from './view/member-profil/member-profil.compon
 import { ClubsAdhererComponent } from './view/clubs-adherer/clubs-adherer.component';
 import { CreateActiviteComponent } from './view/create-activite/create-activite.component';
 import { EditActiviteComponent } from './view/edit-activite/edit-activite.component';
+import { ListInscritComponent } from './view/list-inscrit/list-inscrit.component';
 
 
 
@@ -292,6 +293,7 @@ import { EditActiviteComponent } from './view/edit-activite/edit-activite.compon
         ClubsAdhererComponent,
         CreateActiviteComponent,
         EditActiviteComponent,
+        ListInscritComponent,
 
     ],
     providers: [

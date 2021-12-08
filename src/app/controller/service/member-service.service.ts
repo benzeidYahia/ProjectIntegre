@@ -212,6 +212,9 @@ export class MemberServiceService {
   public SaveClubsMember(): Observable<number> {
     return this.http.post<number>(this.memberUrl + 'clubsmembers/', this.clubsMember);
   }
+  public AcceptClubsMember(club: ClubsMembers): Observable<number> {
+    return this.http.put<number>(this.memberUrl + 'clubsmembers/', club);
+  }
   public SaveActivite(): Observable<number> {
     return this.http.post<number>(this.memberUrl + 'activite/', this.activite);
   }
@@ -227,6 +230,9 @@ export class MemberServiceService {
   public findClubsMember(id: number): Observable<Array<ClubsMembers>> {
     return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/member/id/' + id + '/etat/1' );
   }
+  public findClubsMemberInscrit(id: number): Observable<Array<ClubsMembers>> {
+    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/0' );
+  }
   public findAllClubs(): Observable<Array<Clubs>> {
     return this.http.get<Array<Clubs>>(this.memberUrl + 'clubs/' );
   }
@@ -239,7 +245,7 @@ export class MemberServiceService {
   }
   public findClubsMembers(): Observable<Array<ClubsMembers>> {
     console.log(this.clubsMember.clubs.libelle);
-    return this.http.get<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle );
+    return this.http.get<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/1' );
   }
   public deleteClubsMember(clubsMember: ClubsMembers): Observable<number> {
     return this.http.delete<number>(this.memberUrl + 'clubsmembers/id/' + clubsMember.id);

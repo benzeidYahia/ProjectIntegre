@@ -42,6 +42,7 @@ import {InscriptionComponent} from './view/inscription/inscription.component';
 import {MemberClubsComponent} from './view/member-clubs/member-clubs.component';
 import {MemberProfilComponent} from './view/member-profil/member-profil.component';
 import {ClubsAdhererComponent} from './view/clubs-adherer/clubs-adherer.component';
+import {ListInscritComponent} from './view/list-inscrit/list-inscrit.component';
 
 
 
@@ -56,6 +57,7 @@ import {ClubsAdhererComponent} from './view/clubs-adherer/clubs-adherer.componen
                     {path: 'pages/login-admin', component: LoginAdminComponent},
                     {path: 'pages/clubsMember', component: MemberClubsComponent},
                     {path: 'pages/profil', component: MemberProfilComponent},
+                    {path: 'pages/listInscrit', component: ListInscritComponent},
                     {path: 'pages/clubsAdherer', component: ClubsAdhererComponent},
                     {path: 'pages/inscription', component: InscriptionComponent},
                     {path: 'inscriptionEtudiant', component: FormLayoutDemoComponent},

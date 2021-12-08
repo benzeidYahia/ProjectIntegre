@@ -172,7 +172,6 @@ sortOptions: SelectItem[];
   }
   public add(club: Clubs) {
     this.submitted = true;
-    if (this.clubs.id == null) {
       this.clubsMember.clubs = club;
       this.clubsMember.member = this.user.member;
       console.log(club);
@@ -193,7 +192,6 @@ sortOptions: SelectItem[];
           life: 3000
         });
       });
-    }
   }
   private initCol() {
     this.cols = [

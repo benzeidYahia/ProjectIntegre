@@ -7,6 +7,8 @@ import {Clubs} from '../../controller/model/clubs';
 import {Member} from '../../controller/model/member';
 import {ClubsMembers} from '../../controller/model/clubs-members';
 import {Activite} from '../../controller/model/activite';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-clubs-adherer',
@@ -16,7 +18,7 @@ import {Activite} from '../../controller/model/activite';
 export class ClubsAdhererComponent implements OnInit {
 
   constructor(private messageService: MessageService,
-              private confirmationService: ConfirmationService,
+              private confirmationService: ConfirmationService, public sanitizer: DomSanitizer,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
   get createDialog(): boolean {
@@ -30,6 +32,10 @@ export class ClubsAdhererComponent implements OnInit {
     this.submitted = false;
     this.createDialog = true;
     this.activite = new Activite();
+  }
+  public inscrit(){
+    this.service.findClubsMemberInscrit(this.member.id).subscribe(data => this.itemsClubsMember = data);
+    this.router.navigate(['pages/listInscrit']);
   }
   get editDialog(): boolean {
     return this.service.editDialog;

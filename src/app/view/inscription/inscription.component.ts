@@ -3,6 +3,10 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
 import {MemberServiceService} from '../../controller/service/member-service.service';
 import {Member} from '../../controller/model/member';
+import {JuryDVE} from '../../controller/model/jury-dve';
+import {SuperAdminDVE} from '../../controller/model/super-admin-dve';
+import {LoginService} from '../../controller/service/login.service';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-inscription',
@@ -12,8 +16,8 @@ import {Member} from '../../controller/model/member';
 export class InscriptionComponent implements OnInit {
 
   constructor(private messageService: MessageService,
-              private confirmationService: ConfirmationService,
-              private service: MemberServiceService, private router: Router) {
+              private confirmationService: ConfirmationService, private menu: AppComponent,
+              private service: MemberServiceService, private serviceLogin: LoginService, private router: Router) {
   }
   get submitted(): boolean {
     return this.service.submitted;
@@ -50,7 +54,13 @@ export class InscriptionComponent implements OnInit {
     });
     this.member = new Member();
   }
+  set model(value: any[]) {
+    this.serviceLogin.model = value;
+  }
   ngOnInit(): void {
+    this.member = new Member();
+    this.model = null;
+    this.menu.layoutMode = 'Overlay';
   }
 
 }

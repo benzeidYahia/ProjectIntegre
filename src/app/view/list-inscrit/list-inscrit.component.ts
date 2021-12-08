@@ -6,28 +6,17 @@ import {LoginService} from '../../controller/service/login.service';
 import {Clubs} from '../../controller/model/clubs';
 import {Member} from '../../controller/model/member';
 import {ClubsMembers} from '../../controller/model/clubs-members';
-import {Activite} from '../../controller/model/activite';
 
 @Component({
-  selector: 'app-edit-activite',
-  templateUrl: './edit-activite.component.html',
-  styleUrls: ['./edit-activite.component.scss']
+  selector: 'app-list-inscrit',
+  templateUrl: './list-inscrit.component.html',
+  styleUrls: ['./list-inscrit.component.scss']
 })
-export class EditActiviteComponent implements OnInit {
-
-  uploadedFiles: any[] = [];
+export class ListInscritComponent implements OnInit {
 
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
-  }
-
-  get listClbs(): Array<Clubs> {
-    return this.service.listClbs;
-  }
-
-  set listClbs(value: Array<Clubs>) {
-    this.service.listClbs = value;
   }
   get itemsClubs(): Array<Clubs> {
     if (this.service.itemsClubs == null){
@@ -108,64 +97,28 @@ export class EditActiviteComponent implements OnInit {
   set listMember(value: Array<Member>) {
     this.service.listMember = value;
   }
-  get itemsActivite(): Array<Activite> {
-    return this.service.itemsActivite;
-  }
-
-  set itemsActivite(value: Array<Activite>) {
-    this.service.itemsActivite = value;
-  }
-  get activite(): Activite {
-    return this.service.activite;
-  }
-
-  set activite(value: Activite) {
-    this.service.activite = value;
-  }
-  get listActivite(): Array<Activite> {
-    return this.service.listActivite;
-  }
-
-  set listActivite(value: Array<Activite>) {
-    this.service.listActivite = value;
-  }
-  get editDialog(): boolean {
-    return this.service.editDialog;
-  }
-
-  set editDialog(value: boolean) {
-    this.service.editDialog = value;
-  }
-  public hideEditDialog() {
-    this.editDialog = false;
-    this.submitted = false;
-  }
-  public editActivite() {
-    this.submitted = true;
-    this.activite.clubs = this.clubsMember.clubs;
-    console.log(this.activite.clubs.id);
-
-      this.service.EditActivite().subscribe(data => {
-        // tslint:disable-next-line:no-shadowed-variable
-        this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Cours Created',
-          life: 3000
-        });
-      });
-    this.editDialog = false;
-  }
   ngOnInit(): void {
-  }
-  onUpload(event) {
-    for (const file of event.files) {
-      this.uploadedFiles.push(file);
-    }
+    console.log(this.member.id);
+    this.service.findClubsMemberInscrit(this.member.id).subscribe(data => this.itemsClubsMember = data);
 
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-    console.log(event);
+  }
+  public accepte(club: ClubsMembers) {
+    this.submitted = true;
+    club.etat = true;
+    console.log(club.status);
+    console.log( this.clubsMember.status);
+    club.dateAdherence = new Date();
+    this.service.AcceptClubsMember(club).subscribe(data => {
+      // @ts-ignore
+      this.listClubsMember.push({...data});
+      this.service.findClubsMemberInscrit(this.member.id).subscribe(data => this.itemsClubsMember = data);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: 'Clubs added',
+        life: 3000
+      });
+    });
   }
 
 }
