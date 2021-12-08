@@ -155,7 +155,7 @@ sortOptions: SelectItem[];
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.service.deleteClubsMember().subscribe(data => {
+        this.service.deleteClubsMember(clubsMember).subscribe(data => {
           this.itemsClubsMember = this.itemsClubsMember.filter(val => val.id !== this.clubsMember.id);
           this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
           this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
