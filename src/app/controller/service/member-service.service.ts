@@ -212,7 +212,12 @@ export class MemberServiceService {
   public SaveClubsMember(): Observable<number> {
     return this.http.post<number>(this.memberUrl + 'clubsmembers/', this.clubsMember);
   }
-
+  public SaveActivite(): Observable<number> {
+    return this.http.post<number>(this.memberUrl + 'activite/', this.activite);
+  }
+  public EditActivite(): Observable<number> {
+    return this.http.put<number>(this.memberUrl + 'activite/', this.activite);
+  }
   public create(): Observable<Member> {
     return this.http.post<Member>(this.memberUrl + 'member/', this.member);
   }
@@ -220,7 +225,7 @@ export class MemberServiceService {
     return this.http.get<Array<Member>>(this.memberUrl );
   }
   public findClubsMember(id: number): Observable<Array<ClubsMembers>> {
-    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/member/id/' + id );
+    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/member/id/' + id + '/etat/1' );
   }
   public findAllClubs(): Observable<Array<Clubs>> {
     return this.http.get<Array<Clubs>>(this.memberUrl + 'clubs/' );
@@ -232,8 +237,12 @@ export class MemberServiceService {
     console.log(this.clubsMember.clubs.libelle);
     return this.http.get<Array<Activite>>('http://localhost:8036/member/activite/clubs/libelle/' + this.clubsMember.clubs.libelle );
   }
-  public deleteClubsMember(): Observable<number> {
-    return this.http.delete<number>(this.memberUrl + 'clubsmembers/id/' + this.clubsMember.id);
+  public findClubsMembers(): Observable<Array<ClubsMembers>> {
+    console.log(this.clubsMember.clubs.libelle);
+    return this.http.get<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle );
+  }
+  public deleteClubsMember(clubsMember: ClubsMembers): Observable<number> {
+    return this.http.delete<number>(this.memberUrl + 'clubsmembers/id/' + clubsMember.id);
   }
   public deleteMultipleClubsMemberByid(): Observable<number> {
     return this.http.post<number>(this.memberUrl + 'clubsmembers/delete-Multi', this.listClubsMember);

@@ -147,6 +147,8 @@ import {AppTopBarComponent} from './view/topBar/app.topbar.component';
 import { MemberClubsComponent } from './view/member-clubs/member-clubs.component';
 import { MemberProfilComponent } from './view/member-profil/member-profil.component';
 import { ClubsAdhererComponent } from './view/clubs-adherer/clubs-adherer.component';
+import { CreateActiviteComponent } from './view/create-activite/create-activite.component';
+import { EditActiviteComponent } from './view/edit-activite/edit-activite.component';
 
 
 
@@ -288,6 +290,8 @@ import { ClubsAdhererComponent } from './view/clubs-adherer/clubs-adherer.compon
         MemberClubsComponent,
         MemberProfilComponent,
         ClubsAdhererComponent,
+        CreateActiviteComponent,
+        EditActiviteComponent,
 
     ],
     providers: [

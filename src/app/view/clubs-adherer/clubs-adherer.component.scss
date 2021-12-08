@@ -6,7 +6,7 @@
 
   .product-name {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .product-description {
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    width: 100%;
+    width: 80%;
 
     img {
       width: 150px;
@@ -72,8 +72,8 @@
     }
 
     img {
-      width: 75%;
-      height: 250px;
+      width: 60%;
+      height: 130px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       margin: 2rem 0;
     }
@@ -125,6 +125,7 @@
 
     .product-list-detail {
       text-align: center;
+
     }
 
     .product-price {

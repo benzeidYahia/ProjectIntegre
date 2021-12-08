@@ -230,6 +230,7 @@ sortOptions: SelectItem[];
     this.clubsMember = clubs;
     console.log(this.clubsMember.clubs.libelle);
     this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
+    this.service.findClubsMembers().subscribe(data => this.listClubsMember = data);
     console.log(this.itemsActivite);
     this.router.navigate(['pages/clubsAdherer']);
   }

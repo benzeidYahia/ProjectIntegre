@@ -9,39 +9,23 @@ import {ClubsMembers} from '../../controller/model/clubs-members';
 import {Activite} from '../../controller/model/activite';
 
 @Component({
-  selector: 'app-clubs-adherer',
-  templateUrl: './clubs-adherer.component.html',
-  styleUrls: ['./clubs-adherer.component.scss']
+  selector: 'app-create-activite',
+  templateUrl: './create-activite.component.html',
+  styleUrls: ['./create-activite.component.scss']
 })
-export class ClubsAdhererComponent implements OnInit {
+export class CreateActiviteComponent implements OnInit {
 
+  uploadedFiles: any[] = [];
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
-  get createDialog(): boolean {
-    return this.service.createDialog;
-  }
+  onUpload(event) {
+    for (const file of event.files) {
+      this.uploadedFiles.push(file);
+    }
 
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
-  }
-  public openCreateActivite() {
-    this.submitted = false;
-    this.createDialog = true;
-    this.activite = new Activite();
-  }
-  get editDialog(): boolean {
-    return this.service.editDialog;
-  }
-
-  set editDialog(value: boolean) {
-    this.service.editDialog = value;
-  }
-  public openEditActivite(activite: Activite) {
-    this.submitted = false;
-    this.editDialog = true;
-    this.activite = activite;
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
   get listClbs(): Array<Clubs> {
     return this.service.listClbs;
@@ -150,27 +134,38 @@ export class ClubsAdhererComponent implements OnInit {
   set listActivite(value: Array<Activite>) {
     this.service.listActivite = value;
   }
+  get createDialog(): boolean {
+    return this.service.createDialog;
+  }
+
+  set createDialog(value: boolean) {
+    this.service.createDialog = value;
+  }
+  public hideCreateDialog() {
+    this.createDialog = false;
+    this.submitted = false;
+  }
+  public saveActivite() {
+    this.submitted = true;
+    this.activite.clubs = this.clubsMember.clubs;
+    console.log(this.activite.clubs.id);
+    if (this.activite.id == null) {
+      this.service.SaveActivite().subscribe(data => {
+        // tslint:disable-next-line:no-shadowed-variable
+        this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Cours Created',
+          life: 3000
+        });
+      });
+      this.createDialog = false;
+      this.activite = new Activite();
+    }
+  }
   ngOnInit(): void {
   }
-  public delete(clubsMember: ClubsMembers) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete this member: ' + clubsMember.clubs.libelle + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.service.deleteClubsMember(clubsMember).subscribe(data => {
-          this.itemsClubsMember = this.itemsClubsMember.filter(val => val.id !== this.clubsMember.id);
-          this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-          this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
 
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'you left the club',
-            life: 3000
-          });
-        });
-      }
-    });
-  }
+
 }

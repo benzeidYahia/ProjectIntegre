@@ -1,0 +1,50 @@
+<p-dialog [(visible)]="editDialog" [modal]="true" [style]="{width: '550px'}" header="Course Create"
+          styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+
+        <div class="p-field">
+            <label for="libelle">Title</label>
+            <input [(ngModel)]="activite.nomActivite" autofocus id="libelle" pInputText required type="text"/>
+            <small *ngIf="submitted && !activite.nomActivite" class="p-invalid">ref is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <input [(ngModel)]="activite.description" autofocus id="description" pInputText required type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="numeroOrder">Budget </label>
+            <input [(ngModel)]="activite.budget" autofocus id="numeroOrder" pInputText required type="number"/>
+        </div>
+        <div class="p-field">
+            <label for="Image">Image </label>
+            <!--  <input type="file" id="Image" name="avatar" accept="image/png, image/jpeg" [(ngModel)]="activite.image">-->
+            <input [(ngModel)]="activite.image" autofocus id="Image" pInputText required type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="start"> Date Debut</label>
+            <p-calendar id="start" [(ngModel)]="activite.dateDebut" [showTime]="true" name="StartTime"
+                        class="e-field"
+                        data-name="startTime"
+                        inputId="start"></p-calendar>
+            <small *ngIf="submitted && !activite.dateDebut" class="p-invalid">start date is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="end"> Date Debut</label>
+            <p-calendar id="end" [(ngModel)]="activite.dateFin" [showTime]="true" name="StartTime"
+                        class="e-field"
+                        data-name="startTime"
+                        inputId="end"></p-calendar>
+            <small *ngIf="submitted && !activite.dateFin" class="p-invalid">End date is required.</small>
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button (click)="hideEditDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="editActivite()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
+    </ng-template>
+</p-dialog>
+
+
+

@@ -26,6 +26,8 @@
                                     <div class="product-list-detail" >
                                         <div class="product-name">{{clubsMember.clubs.libelle}}</div>
                                         <div class="product-description">{{clubsMember.clubs.description}}</div>
+                                        <button (click)="delete(clubsMember)"  class="p-button-warning p-mr-2 p-mb-2" icon="pi pi-trash" label="Delete Member" pButton
+                                                pRipple ></button>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +43,10 @@
                                          src="./assets/layout/images/notfound.jpg" >
 
 
-                                    <div class="product-description">{{clubsMember.clubs.description}}</div>
+                                    <div class="product-description">{{clubsMember.clubs.description}}<br>
+                                        <button (click)="delete(clubsMember)"  class="p-button-warning p-mr-2 p-mb-2" icon="pi pi-trash" label="Quit Club" pButton
+                                                pRipple ></button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -58,7 +63,7 @@
             <div class="p-col-12">
                 <div class="card">
 
-                    <p-dataView #dv [paginator]="true" [rows]="4" [value]="listClbs" filterBy="name"
+                    <p-dataView #dv [paginator]="true" [rows]="4" [value]="itemsClubs" filterBy="name"
                                 [sortField]="sortField" [sortOrder]="sortOrder"   layout="list">
                         <ng-template pTemplate="header">
                             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
@@ -69,18 +74,7 @@
                                 </div>
                             </div>
                         </ng-template>
-                        <!-- <ng-template let-clubsMember pTemplate="listItem">
-                             <div class="p-col-12">
-                                 <div class="product-list-item">
-                                     <img *ngIf="clubsMember.image.exists" [src]="clubsMember.image ">
-                                     <img *ngIf="!clubsMember.image"  src="./assets/layout/images/notfound.jpg">
-                                     <div class="product-list-detail" >
-                                         <div class="product-name">{{clubsMember.clubs.libelle}}</div>
-                                         <div class="product-description">{{clubsMember.clubs.description}}</div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </ng-template>-->
+
 
                         <ng-template let-clubs pTemplate="listItem">
                             <div class="p-col-12">

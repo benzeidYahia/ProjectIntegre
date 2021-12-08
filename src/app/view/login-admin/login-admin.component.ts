@@ -107,7 +107,7 @@ export class LoginAdminComponent implements OnInit {
                      {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
                   ];
                 }, (errorResponse: HttpErrorResponse) => {
-                  this.member = null;
+                  this.admin = null;
                   this.correct = false;
 
                   console.log(errorResponse.message);
@@ -123,7 +123,7 @@ export class LoginAdminComponent implements OnInit {
                               {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['/']},
                           ];
                       }, (errorResponse: HttpErrorResponse) => {
-                  this.member = null;
+                  this.jury = null;
                   this.correct = false;
 
                   console.log(errorResponse.message);

@@ -7,4 +7,5 @@ export class Member {
     public prenom: string;
     public login: string;
     public password: string;
+    public image: string;
 }
