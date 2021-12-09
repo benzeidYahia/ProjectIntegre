@@ -236,8 +236,9 @@ export class MemberServiceService {
   public findAllClubs(): Observable<Array<Clubs>> {
     return this.http.get<Array<Clubs>>(this.memberUrl + 'clubs/' );
   }
-  public findAllClubsNotIn(clubs: Array<ClubsMembers>): Observable<Array<Clubs>> {
-    return this.http.post<Array<Clubs>>('http://localhost:8036/member/clubs/clubs/', clubs );
+  public findAllClubsNotIn(id: number[]): Observable<Array<Clubs>> {
+    console.log(id.reverse());
+    return this.http.post<Array<Clubs>>('http://localhost:8036/member/clubs/clubs/', id );
   }
   public findClubsActivitie(): Observable<Array<Activite>> {
     console.log(this.clubsMember.clubs.libelle);

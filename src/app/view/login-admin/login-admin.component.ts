@@ -139,7 +139,7 @@ export class LoginAdminComponent implements OnInit {
                       {label: 'Clubs', icon: 'pi pi-fw pi-table', routerLink: ['pages/clubsMember']},
                       {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']}
                   ];
-                  this.router.navigate(['pages/profil']);
+                  this.router.navigate(['pages/clubsMember']);
               }, (errorResponse: HttpErrorResponse) => {
                   this.member = null;
                   this.correct = false;

@@ -9,6 +9,7 @@ import {Clubs} from '../../controller/model/clubs';
 import {LoginService} from '../../controller/service/login.service';
 import {Activite} from '../../controller/model/activite';
 
+
 @Component({
   selector: 'app-member-clubs',
   templateUrl: './member-clubs.component.html',
@@ -20,7 +21,9 @@ sortOrder: number;
 sortField: string;
 cols: any[];
 tabid: any[];
-listId: Array<number>;
+listId: number[] = [];
+lengthId: number;
+ids: Array<number>  = [];
 i = 0;
 sortKey: any;
 sortOptions: SelectItem[];
@@ -38,12 +41,18 @@ sortOptions: SelectItem[];
   }
 
   ngOnInit(): void {
-    this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-    this.service.findClubsMember(this.member.id).subscribe(data => this.itemsClubsMember = data);
+    this.member = this.user.member;
+   // this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
+    this.service.findClubsMember(this.member.id).subscribe(data => {
+      this.itemsClubsMember = data;
       for (let j = 0; j < this.itemsClubsMember.length; j++) {
         this.listId.push(this.itemsClubsMember[j].clubs.id);
-        }
+        }});
+    this.service.findAllClubsNotIn([1,2]).subscribe(data => this.itemsClubs = data);
     console.log(this.listId);
+    console.log(this.listId.length);
+
+    console.log(this.itemsClubs);
   }
   get itemsClubs(): Array<Clubs> {
     if (this.service.itemsClubs == null){
