@@ -48,10 +48,9 @@ sortOptions: SelectItem[];
       for (let j = 0; j < this.itemsClubsMember.length; j++) {
         this.listId.push(this.itemsClubsMember[j].clubs.id);
         }});
-    this.service.findAllClubsNotIn([1,2]).subscribe(data => this.itemsClubs = data);
+    this.service.findAllClubsNotIn([1, 2]).subscribe(data => this.itemsClubs = data);
     console.log(this.listId);
     console.log(this.listId.length);
-
     console.log(this.itemsClubs);
   }
   get itemsClubs(): Array<Clubs> {
