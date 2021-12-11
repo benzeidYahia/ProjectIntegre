@@ -7,6 +7,10 @@ import {Clubs} from '../../controller/model/clubs';
 import {Member} from '../../controller/model/member';
 import {ClubsMembers} from '../../controller/model/clubs-members';
 import {Activite} from '../../controller/model/activite';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Subscription} from 'rxjs';
+import {copyFile} from '@angular-devkit/build-angular/src/utils/copy-file';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-create-activite',
@@ -14,23 +18,71 @@ import {Activite} from '../../controller/model/activite';
   styleUrls: ['./create-activite.component.scss']
 })
 export class CreateActiviteComponent implements OnInit {
-
-  uploadedFiles: any[] = [];
-  constructor(private messageService: MessageService,
-              private confirmationService: ConfirmationService,
+  public fileName: string;
+  uploadedFiles: any;
+  public profileImage: File;
+  private subscriptions: Subscription[] = [];
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
+  imageName: any;
+  constructor(private messageService: MessageService, public sanitizer: DomSanitizer,
+              private confirmationService: ConfirmationService, private httpClient: HttpClient,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
-  public onfileselected(file){
-    console.log(file);
-  }
+  /*getImage() {
+    this.httpClient.get('http://localhost:8036/member/image/get/' + this.imageName).subscribe(
+    res => {
+      this.retrieveResonse = res;
+      this.base64Data = this.retrieveResonse.picByte;
+      this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+    }
+  );
+  }*/
   onUpload(event) {
     for (const file of event.files) {
       this.uploadedFiles.push(file);
+      copyFile(file, 'src/assets/layout/images');
     }
 
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-    console.log(event);
   }
+  /*
+  onUploads() {
+
+    console.log(this.selectedFile);
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    this.httpClient.post('http://localhost:8036/member/image/upload', uploadImageData, { observe: 'response' })
+        .subscribe((response) => {
+          if (response.status === 200) {
+            this.message = 'Image uploaded successfully';
+          } else {
+            this.message = 'Image not uploaded successfully';
+          }
+        }
+  );
+    this.activite.imageName = this.selectedFile.name;
+  }
+
+
+  public onProfileImageChange(event: any): void {
+    const target = event.target as HTMLInputElement;
+    this.profileImage = (target.files as FileList)[0];
+    this.fileName = (target.files as FileList)[0].name;
+    const formData = new FormData();
+    formData.append('username', this.user.member.nom);
+    formData.append('profileImage', this.profileImage);
+    console.log(this.profileImage);
+    console.log(this.fileName);
+
+  }
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+
+  }*/
   get listClbs(): Array<Clubs> {
     return this.service.listClbs;
   }

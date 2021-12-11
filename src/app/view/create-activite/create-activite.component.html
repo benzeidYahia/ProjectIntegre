@@ -17,11 +17,24 @@
         </div>
 
         <div class="p-field">
-            <label for="Image">Image </label>
-             <p-fileUpload #fubauto  id="Image" mode="basic" [(ngModel)]="activite.image" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)" [auto]="true" chooseLabel="Browse"></p-fileUpload>
-               <!--  <input [(ngModel)]="activite.image" autofocus id="Image" pInputText required type="text"/>
-            <input type="file" id="Image" name="avatar" accept="image/*" [(ngModel)]="activite.image" (change)="onfileselected($event)">
-            -->
+            <!--<div class="container row">
+                <div class="col-md-6">
+                    <input type="file" (change)="onFileChanged($event)">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="button" (click)="onUpload()" value="upload Image">
+                </div>
+            </div>-->
+            <h5>Image</h5>
+            <p-fileUpload name="demo" url="./upload.php" (onUpload)="onUpload($event)"
+                          multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
         </div>
         <div class="p-field">
             <label for="start"> Date Debut</label>
