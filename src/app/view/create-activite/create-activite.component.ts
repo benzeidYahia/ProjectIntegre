@@ -19,7 +19,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CreateActiviteComponent implements OnInit {
   public fileName: string;
-  uploadedFiles: any;
+  uploadedFiles: any ;
   public profileImage: File;
   private subscriptions: Subscription[] = [];
   selectedFile: File;
@@ -32,26 +32,22 @@ export class CreateActiviteComponent implements OnInit {
               private confirmationService: ConfirmationService, private httpClient: HttpClient,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
-  /*getImage() {
+  /*
+  getImage() {
     this.httpClient.get('http://localhost:8036/member/image/get/' + this.imageName).subscribe(
     res => {
       this.retrieveResonse = res;
       this.base64Data = this.retrieveResonse.picByte;
-      this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+      this.activite.imageName = 'data:image/jpeg;base64,' + this.base64Data;
     }
   );
   }*/
   onUpload(event) {
-    for (const file of event.files) {
-      this.uploadedFiles.push(file);
-      copyFile(file, 'src/assets/layout/images');
-    }
-
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+      this.uploadedFiles.push(event.files);
+      this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
   /*
   onUploads() {
-
     console.log(this.selectedFile);
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
@@ -77,11 +73,9 @@ export class CreateActiviteComponent implements OnInit {
     formData.append('profileImage', this.profileImage);
     console.log(this.profileImage);
     console.log(this.fileName);
-
   }
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
-
   }*/
   get listClbs(): Array<Clubs> {
     return this.service.listClbs;

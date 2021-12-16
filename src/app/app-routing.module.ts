@@ -43,6 +43,7 @@ import {MemberClubsComponent} from './view/member-clubs/member-clubs.component';
 import {MemberProfilComponent} from './view/member-profil/member-profil.component';
 import {ClubsAdhererComponent} from './view/clubs-adherer/clubs-adherer.component';
 import {ListInscritComponent} from './view/list-inscrit/list-inscrit.component';
+import {TresorerieComponent} from './view/tresorerie/tresorerie.component';
 
 
 
@@ -57,6 +58,7 @@ import {ListInscritComponent} from './view/list-inscrit/list-inscrit.component';
                     {path: 'pages/login-admin', component: LoginAdminComponent},
                     {path: 'pages/clubsMember', component: MemberClubsComponent},
                     {path: 'pages/profil', component: MemberProfilComponent},
+                    {path: 'pages/tresor', component: TresorerieComponent},
                     {path: 'pages/listInscrit', component: ListInscritComponent},
                     {path: 'pages/clubsAdherer', component: ClubsAdhererComponent},
                     {path: 'pages/inscription', component: InscriptionComponent},

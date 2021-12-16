@@ -1,68 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
+import {DomSanitizer} from '@angular/platform-browser';
 import {MemberServiceService} from '../../controller/service/member-service.service';
 import {Router} from '@angular/router';
 import {LoginService} from '../../controller/service/login.service';
+import {Activite} from '../../controller/model/activite';
 import {Clubs} from '../../controller/model/clubs';
 import {Member} from '../../controller/model/member';
 import {ClubsMembers} from '../../controller/model/clubs-members';
-import {Activite} from '../../controller/model/activite';
-import {DomSanitizer} from '@angular/platform-browser';
 import {Tresorerie} from '../../controller/model/tresorerie';
 
-
 @Component({
-  selector: 'app-clubs-adherer',
-  templateUrl: './clubs-adherer.component.html',
-  styleUrls: ['./clubs-adherer.component.scss']
+  selector: 'app-tresorerie',
+  templateUrl: './tresorerie.component.html',
+  styleUrls: ['./tresorerie.component.scss']
 })
-export class ClubsAdhererComponent implements OnInit {
+export class TresorerieComponent implements OnInit {
 
   constructor(private messageService: MessageService,
-              private confirmationService: ConfirmationService, public sanitizer: DomSanitizer,
+              private confirmationService: ConfirmationService,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
   get createDialog(): boolean {
     return this.service.createDialog;
-  }
-
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
-  }
-  public openCreateActivite() {
-    this.submitted = false;
-    this.createDialog = true;
-    this.activite = new Activite();
-  }
-  public inscrit(){
-    this.service.findClubsMemberInscrit(this.member.id).subscribe(data => this.itemsClubsMember = data);
-    this.router.navigate(['pages/listInscrit']);
-  }
-  get submittedTresorerie(): boolean {
-    return this.service.submittedTresorerie;
-  }
-
-  set submittedTresorerie(value: boolean) {
-    this.service.submittedTresorerie = value;
-  }
-  get editDialog(): boolean {
-    return this.service.editDialog;
-  }
-  get editTresorerieDialog(): boolean {
-    return this.service.editTresorerieDialog;
-  }
-
-  set editTresorerieDialog(value: boolean) {
-    this.service.editTresorerieDialog = value;
-  }
-  // tslint:disable-next-line:adjacent-overload-signatures
-  set editDialog(value: boolean) {
-    this.service.editDialog = value;
-  }
-  public openEditActivite(activite: Activite) {
-    this.submitted = false;
-    this.editDialog = true;
-    this.activite = activite;
   }
   get itemsTresor(): Array<Tresorerie> {
     return this.service.itemsTresor;
@@ -71,10 +31,28 @@ export class ClubsAdhererComponent implements OnInit {
   set itemsTresor(value: Array<Tresorerie>) {
     this.service.itemsTresor = value;
   }
-  public openTresoreriActivite(activite: Activite) {
+  // tslint:disable-next-line:adjacent-overload-signatures
+  set createDialog(value: boolean) {
+    this.service.createDialog = value;
+  }
+  get listTresor(): Array<Tresorerie> {
+   return this.service.listTresor;
+  }
+
+  set listTresor(value: Array<Tresorerie>) {
+    this.service.listTresor = value;
+  }
+  get editDialog(): boolean {
+    return this.service.editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this.service.editDialog = value;
+  }
+  public openEditActivite(activite: Activite) {
+    this.submitted = false;
+    this.editDialog = true;
     this.activite = activite;
-    this.service.findActivitieBudget(this.activite.id).subscribe(data => this.itemsTresor = data);
-    this.router.navigate(['pages/tresor']);
   }
   get listClbs(): Array<Clubs> {
     return this.service.listClbs;
@@ -184,28 +162,6 @@ export class ClubsAdhererComponent implements OnInit {
     this.service.listActivite = value;
   }
   ngOnInit(): void {
-  }
-  public delete(clubsMember: ClubsMembers) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete this member: ' + clubsMember.clubs.libelle + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.service.deleteClubsMember(clubsMember).subscribe(data => {
-          this.itemsClubsMember = this.itemsClubsMember.filter(val => val.id !== this.clubsMember.id);
-          // tslint:disable-next-line:no-shadowed-variable
-          this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-          // tslint:disable-next-line:no-shadowed-variable
-          this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'you left the club',
-            life: 3000
-          });
-        });
-      }
-    });
+    this.service.findActivitieBudget(this.activite.id).subscribe(data => this.itemsTresor = data);
   }
 }

@@ -7,6 +7,7 @@ import {Member} from '../model/member';
 import {ClubsMembers} from '../model/clubs-members';
 import {Clubs} from '../model/clubs';
 import {Activite} from '../model/activite';
+import {Tresorerie} from '../model/tresorerie';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class MemberServiceService {
   private _itemsMember: Array<Member>;
   private _listMember: Array<Member>;
   private _member: Member;
+  private _itemsTresor: Array<Tresorerie>;
+  private _listTresor: Array<Tresorerie>;
+  private _Tresor: Tresorerie;
   private _itemsClubsMember: Array<ClubsMembers>;
   private _listClubsMember: Array<ClubsMembers>;
   private _clubsMember: ClubsMembers;
@@ -32,9 +36,60 @@ export class MemberServiceService {
   private _listActivite: Array<Activite>;
   private _createDialog: boolean;
   private _editDialog: boolean;
+  private _editTresorerieDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+  private _submittedTresorerie: boolean;
 
+
+  get itemsTresor(): Array<Tresorerie> {
+    if ( this._itemsTresor ==  null){
+      this._itemsTresor = new Array<Tresorerie>();
+    }
+    return this._itemsTresor;
+  }
+
+  set itemsTresor(value: Array<Tresorerie>) {
+    this._itemsTresor = value;
+  }
+
+  get listTresor(): Array<Tresorerie> {
+    if ( this._listTresor ==  null){
+      this._listTresor = new Array<Tresorerie>();
+    }
+    return this._listTresor;
+  }
+
+  set listTresor(value: Array<Tresorerie>) {
+    this._listTresor = value;
+  }
+
+  get Tresor(): Tresorerie {
+    if ( this._Tresor ==  null){
+      this._Tresor = new Tresorerie();
+    }
+    return this._Tresor;
+  }
+
+  set Tresor(value: Tresorerie) {
+    this._Tresor = value;
+  }
+
+  get editTresorerieDialog(): boolean {
+    return this._editTresorerieDialog;
+  }
+
+  set editTresorerieDialog(value: boolean) {
+    this._editTresorerieDialog = value;
+  }
+
+  get submittedTresorerie(): boolean {
+    return this._submittedTresorerie;
+  }
+
+  set submittedTresorerie(value: boolean) {
+    this._submittedTresorerie = value;
+  }
 
   get activite(): Activite {
     if (this._activite == null){
@@ -223,6 +278,9 @@ export class MemberServiceService {
   }
   public create(): Observable<Member> {
     return this.http.post<Member>(this.memberUrl + 'member/', this.member);
+  }
+  public findActivitieBudget(id: number): Observable<Array<Tresorerie>> {
+    return this.http.get<Array<Tresorerie>>( 'http://localhost:8036/member/tresorerie/activite/id/' + id  );
   }
   public findAllMember(): Observable<Array<Member>> {
     return this.http.get<Array<Member>>(this.memberUrl );

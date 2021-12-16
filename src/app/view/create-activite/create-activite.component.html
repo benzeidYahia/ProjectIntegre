@@ -17,24 +17,27 @@
         </div>
 
         <div class="p-field">
-            <!--<div class="container row">
+           <!-- <div class="container row">
                 <div class="col-md-6">
                     <input type="file" (change)="onFileChanged($event)">
                 </div>
 
                 <div class="col-md-6">
-                    <input type="button" (click)="onUpload()" value="upload Image">
+                    <input type="button" (click)="onUploads()" value="upload Image">
                 </div>
-            </div>-->
+            </div> -->
             <h5>Image</h5>
-            <p-fileUpload name="demo" url="./upload.php" (onUpload)="onUpload($event)"
+            <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"
                           multiple="multiple" accept="image/*" maxFileSize="1000000">
                 <ng-template pTemplate="content">
-                    <ul *ngIf="uploadedFiles.length">
+
                         <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                    </ul>
+
                 </ng-template>
             </p-fileUpload>
+        </div>
+        <div class="p-field">
+            <img src="{{activite.imageName}}"/>
         </div>
         <div class="p-field">
             <label for="start"> Date Debut</label>

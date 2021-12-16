@@ -150,6 +150,7 @@ import { ClubsAdhererComponent } from './view/clubs-adherer/clubs-adherer.compon
 import { CreateActiviteComponent } from './view/create-activite/create-activite.component';
 import { EditActiviteComponent } from './view/edit-activite/edit-activite.component';
 import { ListInscritComponent } from './view/list-inscrit/list-inscrit.component';
+import { TresorerieComponent } from './view/tresorerie/tresorerie.component';
 
 
 
@@ -294,6 +295,7 @@ import { ListInscritComponent } from './view/list-inscrit/list-inscrit.component
         CreateActiviteComponent,
         EditActiviteComponent,
         ListInscritComponent,
+        TresorerieComponent,
 
     ],
     providers: [

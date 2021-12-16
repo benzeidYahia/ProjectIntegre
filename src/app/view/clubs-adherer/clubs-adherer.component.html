@@ -77,6 +77,8 @@
                                         <b style="color: black">  End: </b><b style="color: #6c9aaa">{{activite.dateFin}}</b> <br> <b style="color: black">Description: </b><b style="color: #6c9aaa">{{activite.description}}</b></div>
                                     <button (click)="openEditActivite(activite)" [style.visibility]=" clubsMember.status == 'president'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Edit Activite" pButton
                                             pRipple ></button>
+                                    <button (click)="openTresoreriActivite(activite)" [style.visibility]=" clubsMember.status == 'tresorerie'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Tresorerie" pButton
+                                            pRipple ></button>
                                 </div>
                             </div>
                 </div>
