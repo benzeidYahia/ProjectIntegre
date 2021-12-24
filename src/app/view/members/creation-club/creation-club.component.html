@@ -1,0 +1,43 @@
+<div class="container p-card p-col-9" style="margin-top: 2%; margin-left: 10%">
+        <div class="p-fluid">
+
+
+<div class="p-col-12">
+    <h1 style="text-align: center"><b style="color: #0a3e41">Request Creating Club</b></h1>
+    <div class="p-field ">
+        <label for="libelle">Clubs Name</label>
+        <input [(ngModel)]="demande.libelle" autofocus id="libelle" pInputText required type="text"/>
+
+        <label for="numeroOrder">Categorie </label>
+        <input [(ngModel)]="demande.categorie" autofocus id="numeroOrder" pInputText required type="text"/>
+
+    </div>
+
+    <div class="p-field ">
+        <label for="description">Description</label>
+        <textarea [(ngModel)]="demande.description" autofocus id="description" pInputText required type="text"></textarea>
+    </div>
+    <div class="p-field ">
+        <label for="name">Name ReferentPedagogique </label>
+        <input [(ngModel)]="demande.referentPedagogique" autofocus id="name" pInputText required type="text"/>
+
+    </div>
+    <div class="p-field ">
+        <h5>Image</h5>
+        <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"
+                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+            <ng-template pTemplate="content">
+
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+
+            </ng-template>
+        </p-fileUpload>
+    </div>
+       </div>
+
+
+
+    <button (click)="saveRequest()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
+    </div>
+
+</div>

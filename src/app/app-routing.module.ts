@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
-import {DashboardDemoComponent} from './view/Dashebord/dashboarddemo.component';
+import {DashboardDemoComponent} from './view/members/Dashebord/dashboarddemo.component';
 import {InputDemoComponent} from './demo/view/inputdemo.component';
 import {TableDemoComponent} from './demo/view/tabledemo.component';
 import {ListDemoComponent} from './demo/view/listdemo.component';
@@ -37,13 +37,18 @@ import {AppNotfoundComponent} from './pages/app.notfound.component';
 import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
-import {LoginAdminComponent} from './view/login-admin/login-admin.component';
-import {InscriptionComponent} from './view/inscription/inscription.component';
-import {MemberClubsComponent} from './view/member-clubs/member-clubs.component';
-import {MemberProfilComponent} from './view/member-profil/member-profil.component';
-import {ClubsAdhererComponent} from './view/clubs-adherer/clubs-adherer.component';
-import {ListInscritComponent} from './view/list-inscrit/list-inscrit.component';
-import {TresorerieComponent} from './view/tresorerie/tresorerie.component';
+import {LoginAdminComponent} from './view/members/login-admin/login-admin.component';
+import {InscriptionComponent} from './view/members/inscription/inscription.component';
+import {MemberClubsComponent} from './view/members/member-clubs/member-clubs.component';
+import {MemberProfilComponent} from './view/members/member-profil/member-profil.component';
+import {ClubsAdhererComponent} from './view/members/clubs-adherer/clubs-adherer.component';
+import {ListInscritComponent} from './view/members/list-inscrit/list-inscrit.component';
+import {TresorerieComponent} from './view/members/tresorerie/tresorerie.component';
+import {DemandeCreationClb} from './controller/model/demande-creation-clb';
+import {CreationClubComponent} from './view/members/creation-club/creation-club.component';
+import {ClubsComponent} from './view/jury/clubs/clubs.component';
+import {ClubsDetailsComponent} from './view/jury/clubs-details/clubs-details.component';
+import {ClubsRequestComponent} from './view/jury/clubs-request/clubs-request.component';
 
 
 
@@ -59,9 +64,13 @@ import {TresorerieComponent} from './view/tresorerie/tresorerie.component';
                     {path: 'pages/clubsMember', component: MemberClubsComponent},
                     {path: 'pages/profil', component: MemberProfilComponent},
                     {path: 'pages/tresor', component: TresorerieComponent},
+                    {path: 'pages/request', component: CreationClubComponent},
                     {path: 'pages/listInscrit', component: ListInscritComponent},
                     {path: 'pages/clubsAdherer', component: ClubsAdhererComponent},
                     {path: 'pages/inscription', component: InscriptionComponent},
+                    {path: 'pages/clubs', component: ClubsComponent},
+                    {path: 'pages/clubsDetail', component: ClubsDetailsComponent},
+                    {path: 'pages/clubsRequest', component: ClubsRequestComponent},
                     {path: 'inscriptionEtudiant', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

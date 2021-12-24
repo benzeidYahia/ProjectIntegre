@@ -5,7 +5,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 
 @Component({
     templateUrl: './app.crud.component.html',
-    styleUrls: ['../view/Dashebord/tabledemo.scss'],
+    styleUrls: ['../view/members/Dashebord/tabledemo.scss'],
     styles: [`
 		:host ::ng-deep .p-dialog .product-image {
 			width: 150px;

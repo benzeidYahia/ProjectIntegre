@@ -1,0 +1,66 @@
+<p-dialog [(visible)]="createDialog" [modal]="true" [style]="{width: '550px'}" header="Activite Create"
+          styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+
+        <div class="p-field">
+            <label for="libelle">Title</label>
+            <input [(ngModel)]="activite.nomActivite" autofocus id="libelle" pInputText required type="text"/>
+            <small *ngIf="submitted && !activite.nomActivite" class="p-invalid">ref is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <input [(ngModel)]="activite.description" autofocus id="description" pInputText required type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="numeroOrder">Budget </label>
+            <input [(ngModel)]="activite.budget" autofocus id="numeroOrder" pInputText required type="number"/>
+        </div>
+
+        <div class="p-field">
+           <!-- <div class="container row">
+                <div class="col-md-6">
+                    <input type="file" (change)="onFileChanged($event)">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="button" (click)="onUploads()" value="upload Image">
+                </div>
+            </div> -->
+            <h5>Image</h5>
+            <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"
+                          multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <ng-template pTemplate="content">
+
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+
+                </ng-template>
+            </p-fileUpload>
+        </div>
+        <div class="p-field">
+            <label for="start"> Date Debut</label>
+            <p-calendar id="start" [(ngModel)]="activite.dateDebut" [showTime]="true" name="StartTime"
+                        class="e-field"
+                        data-name="startTime"
+                        inputId="start"></p-calendar>
+            <small *ngIf="submitted && !activite.dateDebut" class="p-invalid">start date is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="end"> Date Debut</label>
+            <p-calendar id="end" [(ngModel)]="activite.dateFin" [showTime]="true" name="StartTime"
+                        class="e-field"
+                        data-name="startTime"
+                        inputId="end"></p-calendar>
+            <small *ngIf="submitted && !activite.dateFin" class="p-invalid">End date is required.</small>
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button (click)="hideCreateDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="saveActivite()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
+    </ng-template>
+</p-dialog>
+
+
+

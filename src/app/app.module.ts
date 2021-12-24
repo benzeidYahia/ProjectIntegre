@@ -118,7 +118,7 @@ import {MiscDemoComponent} from './demo/view/miscdemo.component';
 import {EmptyDemoComponent} from './demo/view/emptydemo.component';
 import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
-import {DashboardDemoComponent} from './view/Dashebord/dashboarddemo.component';
+import {DashboardDemoComponent} from './view/members/Dashebord/dashboarddemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
 import {DisplayComponent} from './utilities/display.component';
 import {ElevationComponent} from './utilities/elevation.component';
@@ -141,16 +141,22 @@ import {IconService} from './demo/service/iconservice';
 
 import {ConfirmationService, MessageService} from 'primeng/api';
 
-import {LoginAdminComponent} from './view/login-admin/login-admin.component';
-import {InscriptionComponent} from './view/inscription/inscription.component';
-import {AppTopBarComponent} from './view/topBar/app.topbar.component';
-import { MemberClubsComponent } from './view/member-clubs/member-clubs.component';
-import { MemberProfilComponent } from './view/member-profil/member-profil.component';
-import { ClubsAdhererComponent } from './view/clubs-adherer/clubs-adherer.component';
-import { CreateActiviteComponent } from './view/create-activite/create-activite.component';
-import { EditActiviteComponent } from './view/edit-activite/edit-activite.component';
-import { ListInscritComponent } from './view/list-inscrit/list-inscrit.component';
-import { TresorerieComponent } from './view/tresorerie/tresorerie.component';
+import {LoginAdminComponent} from './view/members/login-admin/login-admin.component';
+import {InscriptionComponent} from './view/members/inscription/inscription.component';
+import {AppTopBarComponent} from './view/members/TopBar/app.topbar.component';
+import { MemberClubsComponent } from './view/members/member-clubs/member-clubs.component';
+import { MemberProfilComponent } from './view/members/member-profil/member-profil.component';
+import { ClubsAdhererComponent } from './view/members/clubs-adherer/clubs-adherer.component';
+import { CreateActiviteComponent } from './view/members/create-activite/create-activite.component';
+import { EditActiviteComponent } from './view/members/edit-activite/edit-activite.component';
+import { ListInscritComponent } from './view/members/list-inscrit/list-inscrit.component';
+import { TresorerieComponent } from './view/members/tresorerie/tresorerie.component';
+import { TresorerieNewComponent } from './view/members/tresorerie-new/tresorerie-new.component';
+import { CreationClubComponent } from './view/members/creation-club/creation-club.component';
+import { ClubsComponent } from './view/jury/clubs/clubs.component';
+import { ClubsDetailsComponent } from './view/jury/clubs-details/clubs-details.component';
+import { ClubsRequestComponent } from './view/jury/clubs-request/clubs-request.component';
+import { ClubsRequestDetailsComponent } from './view/jury/clubs-request-details/clubs-request-details.component';
 
 
 
@@ -296,6 +302,12 @@ import { TresorerieComponent } from './view/tresorerie/tresorerie.component';
         EditActiviteComponent,
         ListInscritComponent,
         TresorerieComponent,
+        TresorerieNewComponent,
+        CreationClubComponent,
+        ClubsComponent,
+        ClubsDetailsComponent,
+        ClubsRequestComponent,
+        ClubsRequestDetailsComponent,
 
     ],
     providers: [

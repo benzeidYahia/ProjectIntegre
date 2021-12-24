@@ -1,0 +1,63 @@
+<div class="p-grid" style="position:initial ">
+    <div class="p-col">
+        <p-toast></p-toast>
+        <div class="card " style="margin-left: 3%; background-color: gainsboro">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+
+                    <h2><b style="color: #4e7988">Tresorerie</b></h2>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <button  class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="  New" pButton
+                             pRipple style="width: 90px; float: left" (click)="openTresor()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [(selection)]="listTresor" [paginator]="true" [rowHover]="true" [rows]="10" [value]="itemsTresor" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Manage Course</h5>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="numeroOrder">Amount
+                            <p-sortIcon field="numeroOrder"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="libelle">Date
+                            <p-sortIcon field="libelle"></p-sortIcon>
+                        </th>
+
+                        <th pSortableColumn="libelle">Initial Budget
+                            <p-sortIcon field="libelle"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="libelle">Budget Left
+                            <p-sortIcon field="libelle"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template let-tresor pTemplate="body">
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="tresor"></p-tableCheckbox>
+                        </td>
+                        <td> {{tresor.amount}}</td>
+                        <td> {{tresor.dateTresorerie}}</td>
+                        <td> {{tresor.activite.budget}}</td>
+                        <td> {{tresor.amountBudget}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{itemsTresor ? itemsTresor.length : 0 }} items.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+    <app-tresorerie-new></app-tresorerie-new>
+</div>

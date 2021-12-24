@@ -1,23 +1,23 @@
-/* tslint:disable:variable-name */
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
 import {Member} from '../model/member';
+import {Tresorerie} from '../model/tresorerie';
 import {ClubsMembers} from '../model/clubs-members';
 import {Clubs} from '../model/clubs';
 import {Activite} from '../model/activite';
-import {Tresorerie} from '../model/tresorerie';
 import {DemandeCreationClb} from '../model/demande-creation-clb';
+import {Observable} from 'rxjs';
+import {JuryDVE} from '../model/jury-dve';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemberServiceService {
+export class JuryServiceService {
 
   constructor(private http: HttpClient) {
   }
-  private memberUrl = environment.memberUrl;
+  private juryUrl = environment.juryUrl;
   private _itemsMember: Array<Member>;
   private _listMember: Array<Member>;
   private _member: Member;
@@ -32,7 +32,7 @@ export class MemberServiceService {
   private _listClubs: Array<Clubs>;
   private _clubs: Clubs;
 
-   private _activite: Activite;
+  private _activite: Activite;
   private _itemsActivite: Array<Activite>;
   private _listActivite: Array<Activite>;
   private _createDialog: boolean;
@@ -44,9 +44,21 @@ export class MemberServiceService {
   private _submitted2: boolean;
   private _submittedTresorerie: boolean;
   private _demande: DemandeCreationClb;
+  private _jury: JuryDVE;
   private _itemsdemande: Array<DemandeCreationClb>;
   private _listdemande: Array<DemandeCreationClb>;
 
+
+  get jury(): JuryDVE {
+    if (this._jury == null){
+      this._jury =  new JuryDVE();
+    }
+    return this._jury;
+  }
+
+  set jury(value: JuryDVE) {
+    this._jury = value;
+  }
 
   get submitted2(): boolean {
     return this._submitted2;
@@ -319,59 +331,86 @@ export class MemberServiceService {
   set member(value: Member) {
     this._member = value;
   }
+  public ActivateClubs(): Observable<number> {
+    return this.http.put<number>( 'http://localhost:8036/jury/clubs/', this.clubs );
+  }
+  public validateClub(): Observable<number> {
+    return this.http.put<number>( 'http://localhost:8036/jury/demandecreationclb/', this.demande );
+  }
+  public DesactivateClubs(): Observable<number> {
+    return this.http.put<number>( 'http://localhost:8036/jury/clubs/', this.clubs );
+  }
   public SaveClubsMember(): Observable<number> {
-    return this.http.post<number>(this.memberUrl + 'clubsmembers/', this.clubsMember);
+    return this.http.post<number>(this.juryUrl + 'clubsmembers/', this.clubsMember);
   }
   public SaveTresor(): Observable<number> {
-    return this.http.post<number>(this.memberUrl + 'tresorerie/', this.Tresor);
+    return this.http.post<number>(this.juryUrl + 'tresorerie/', this.Tresor);
   }
   public AcceptClubsMember(club: ClubsMembers): Observable<number> {
-    return this.http.put<number>(this.memberUrl + 'clubsmembers/', club);
+    return this.http.put<number>(this.juryUrl + 'clubsmembers/', club);
   }
   public SaveActivite(): Observable<number> {
-    return this.http.post<number>(this.memberUrl + 'activite/', this.activite);
+    return this.http.post<number>(this.juryUrl + 'activite/', this.activite);
   }
   public SaveRequest(): Observable<number> {
-    return this.http.post<number>(this.memberUrl + 'demandecreationclb/', this.demande);
+    return this.http.post<number>(this.juryUrl + 'demandecreationclb/', this.demande);
   }
   public EditActivite(): Observable<number> {
-    return this.http.put<number>(this.memberUrl + 'activite/', this.activite);
+    return this.http.put<number>(this.juryUrl + 'activite/', this.activite);
   }
   public create(): Observable<Member> {
-    return this.http.post<Member>(this.memberUrl + 'member/', this.member);
+    return this.http.post<Member>(this.juryUrl + 'member/', this.member);
   }
   public findActivitieBudget(id: number): Observable<Array<Tresorerie>> {
-    return this.http.get<Array<Tresorerie>>( 'http://localhost:8036/member/tresorerie/activite/id/' + id  );
+    return this.http.get<Array<Tresorerie>>( 'http://localhost:8036/jury/tresorerie/activite/id/' + id  );
+  }
+  public findRequest(): Observable<Array<DemandeCreationClb>> {
+    return this.http.get<Array<DemandeCreationClb>>('http://localhost:8036/jury/demandecreationclb/');
+  }
+  public findJury(nom: string, prenom: string): Observable<JuryDVE> {
+    return this.http.get<JuryDVE>('http://localhost:8036/jury/jury/nom/' + nom + '/prenom/' + prenom);
+  }
+  public findClubs(): Observable<Clubs> {
+    return this.http.get<Clubs>( 'http://localhost:8036/jury/clubs/libelle/' + this.demande.libelle );
+  }
+  public updateClubs(): Observable<number> {
+    return this.http.put<number>( 'http://localhost:8036/jury/clubs/' , this.clubs );
   }
   public findAllMember(): Observable<Array<Member>> {
-    return this.http.get<Array<Member>>(this.memberUrl );
+    return this.http.get<Array<Member>>(this.juryUrl );
+  }
+  public findClubsActif(): Observable<Array<Clubs>> {
+    return this.http.get<Array<Clubs>>( 'http://localhost:8036/jury/clubs/status/actif' );
+  }
+  public findClubsInActif(): Observable<Array<Clubs>> {
+    return this.http.get<Array<Clubs>>( 'http://localhost:8036/jury/clubs/status/inactif' );
   }
   public findClubsMember(id: number): Observable<Array<ClubsMembers>> {
-    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/member/id/' + id + '/etat/1/status/actif' );
+    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/jury/clubsmembers/member/id/' + id + '/etat/1/status/actif' );
   }
   public findClubsMemberInscrit(id: number): Observable<Array<ClubsMembers>> {
-    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/0/status/actif' );
+    return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/jury/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/0/status/actif' );
   }
   public findAllClubs(): Observable<Array<Clubs>> {
-    return this.http.get<Array<Clubs>>(this.memberUrl + 'clubs/' );
+    return this.http.get<Array<Clubs>>(this.juryUrl + 'clubs/' );
   }
   public findAllClubsNotIn(id: number[]): Observable<Array<Clubs>> {
     console.log(id.reverse());
-    return this.http.post<Array<Clubs>>('http://localhost:8036/member/clubs/clubs/', id );
+    return this.http.post<Array<Clubs>>('http://localhost:8036/jury/clubs/clubs/', id );
   }
   public findClubsActivitie(): Observable<Array<Activite>> {
     console.log(this.clubsMember.clubs.libelle);
-    return this.http.get<Array<Activite>>('http://localhost:8036/member/activite/clubs/libelle/' + this.clubsMember.clubs.libelle );
+    return this.http.get<Array<Activite>>('http://localhost:8036/jury/activite/clubs/libelle/' + this.clubsMember.clubs.libelle );
   }
   public findClubsMembers(): Observable<Array<ClubsMembers>> {
     console.log(this.clubsMember.clubs.libelle);
-    return this.http.get<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/1/status/actif' );
+    return this.http.get<Array<ClubsMembers>>('http://localhost:8036/jury/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/1/status/actif' );
   }
   public deleteClubsMember(clubsMember: ClubsMembers): Observable<number> {
-    return this.http.delete<number>(this.memberUrl + 'clubsmembers/id/' + clubsMember.id);
+    return this.http.delete<number>(this.juryUrl + 'clubsmembers/id/' + clubsMember.id);
   }
   public deleteMultipleClubsMemberByid(): Observable<number> {
-    return this.http.post<number>(this.memberUrl + 'clubsmembers/delete-Multi', this.listClubsMember);
+    return this.http.post<number>(this.juryUrl + 'clubsmembers/delete-Multi', this.listClubsMember);
   }
   public deleteMultipleClubsMemberIndexById() {
     for (const item of this.listClubsMember) {
@@ -390,5 +429,4 @@ export class MemberServiceService {
       }
     }
     return index;
-  }
-}
+  }}

@@ -1,6 +1,6 @@
-import {JuryDVE} from './jury-dve';
+import {Member} from './member';
 
-export class Clubs {
+export class DemandeCreationClb {
     public id: number;
     public  libelle: string;
     public referentPedagogique: string ;
@@ -9,5 +9,7 @@ export class Clubs {
     public  description: string;
     public dateCreation = new Date() ;
     public image: string;
-    public jury: JuryDVE;
+    public nomAdmin: string;
+    public prenomAdmin: string;
+    public member: Member;
 }

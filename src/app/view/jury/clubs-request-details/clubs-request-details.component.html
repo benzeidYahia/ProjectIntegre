@@ -1,0 +1,45 @@
+<p-dialog [(visible)]="viewDialog" [modal]="true" [style]="{width: '800px'}" header="Section View"
+          styleClass="p-fluid">
+    <ng-template pTemplate="content" style="background-color: lavender;">
+        <div class="p-field">
+            <label for="libelle">Title</label>
+            <input [(ngModel)]="demande.libelle" disabled id="libelle" pInputText type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="indicationProf">Description</label>
+            <textarea [(ngModel)]="demande.description" disabled id="indicationProf" pInputText
+                      type="text"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="contenu">Description</label>
+            <textarea [(ngModel)]="demande.description" disabled id="contenu" pInputText type="text"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="questions"> Referent Pedagogique</label>
+            <textarea [(ngModel)]="demande.referentPedagogique" disabled id="questions" pInputText type="text"></textarea>
+        </div>
+
+
+
+        <div class="p-field">
+            <label for="cours">FirstName of the Student</label>
+            <input [(ngModel)]="demande.member.nom" disabled id="cours" pInputText type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="categorieSection">LastName of the Student</label>
+            <input [(ngModel)]="demande.member.prenom" disabled id="categorieSection" pInputText
+                   type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="logo">Logo of the Club</label>
+            <img *ngIf="demande.image" [src]="demande.image " style="width: 100%;" id="logo">
+            <img *ngIf="!demande.image" style="width: 100%;" src="../../../../assets/layout/images/notfound.jpg">
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
+    </ng-template>
+</p-dialog>

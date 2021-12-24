@@ -1,0 +1,54 @@
+<div class="p-grid ">
+    <p-toast></p-toast>
+
+    <div class="p-col">
+        <button (click)="return()"  pButton label="return" > &#9194;</button>
+        <div class="p-grid list-demo" style="margin-top: 2%">
+            <div class="p-col-12" >
+
+                <div class="card">
+
+                    <p-dataView #dv [paginator]="true" [rows]="4" [value]="itemsClubsMember" filterBy="name"
+                                 layout="list">
+                        <ng-template pTemplate="header">
+                            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+
+                                <h2><b style="color: #4e7988">New Member</b></h2>
+                                <div style="float: right">
+                                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                                </div>
+                            </div>
+                        </ng-template>
+
+
+                        <ng-template let-memberclb pTemplate="listItem">
+                            <div class="p-col-12">
+                                <div class="product-list-item" >
+                                    <img *ngIf="memberclb.member.image" [src]="memberclb.member.image "  >
+                                    <img *ngIf="!memberclb.member.image "
+                                         src="../../../../assets/layout/images/notfound.jpg" >
+                                    <div class="product-list-detail" style="margin-top: 4%">
+                                        <div class="product-name" ><b style="color: black">Nom:</b><b style="color: #6c9aaa"> {{memberclb.member.nom}}</b> <br><b style="color: black"> Prenom: </b><b style="color: #6c9aaa">{{memberclb.member.prenom}}</b>
+                                        </div>
+                                        <div class="product-description"> <b style="color: black">Fillier: </b><b style="color: #6c9aaa">{{memberclb.member.fillier}}</b> <br>
+                                            <b style="color: black">Niveau: </b><b style="color: #6c9aaa">{{memberclb.member.niveau}}</b> <br>
+                                        </div>
+                                        <button (click)="accepte(memberclb)" [style.visibility]=" clubsMember.status == 'president'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="accepte" pButton
+                                                pRipple ></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </ng-template>
+
+                    </p-dataView>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

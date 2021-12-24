@@ -1,0 +1,22 @@
+<p-dialog [(visible)]="createTresorDialog" [modal]="true" [style]="{width: '300px'}" header="New amount"
+          styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+
+        <div class="p-field">
+            <label for="libelle">Amount</label>
+            <input [(ngModel)]="Tresor.amount" autofocus id="libelle" pInputText required type="text"/>
+            <small *ngIf="submitted && !Tresor.amount" class="p-invalid">ref is required.</small>
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button (click)="hideCreateTresorDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="saveTresor()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
+    </ng-template>
+</p-dialog>
+
+
+
+
