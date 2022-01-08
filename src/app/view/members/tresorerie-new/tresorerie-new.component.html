@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="createTresorDialog" [modal]="true" [style]="{width: '300px'}" header="New amount"
+<p-dialog [(visible)]="createTresorDialog" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '300px'}" header="New amount"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 

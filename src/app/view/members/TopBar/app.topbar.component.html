@@ -5,7 +5,7 @@
     </a>
 
 
-    <ul  class="topbar-menu">
+    <ul *ngIf="this.jury.id == null && this.member.id ==null" class="topbar-menu">
 
         <li [ngClass]="{'active-topmenuitem fadeInDown': appMain.topbarUserMenuActive}" class="user-profile"
             style="margin-top: 4px">

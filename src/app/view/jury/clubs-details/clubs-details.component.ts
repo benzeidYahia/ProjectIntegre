@@ -10,6 +10,7 @@ import {Clubs} from '../../../controller/model/clubs';
 import {Member} from '../../../controller/model/member';
 import {ClubsMembers} from '../../../controller/model/clubs-members';
 import {JuryServiceService} from '../../../controller/service/jury-service.service';
+import {JuryDVE} from '../../../controller/model/jury-dve';
 
 @Component({
   selector: 'app-clubs-details',
@@ -25,7 +26,13 @@ export class ClubsDetailsComponent implements OnInit {
   get createDialog(): boolean {
     return this.service.createDialog;
   }
+  get jury(): JuryDVE {
+    return this.service.jury;
+  }
 
+  set jury(value: JuryDVE) {
+    this.service.jury = value;
+  }
   set createDialog(value: boolean) {
     this.service.createDialog = value;
   }
@@ -185,6 +192,9 @@ export class ClubsDetailsComponent implements OnInit {
     this.service.listActivite = value;
   }
   ngOnInit(): void {
+    if (this.jury.id == null){
+      this.router.navigate(['**']);
+    }
   }
   public delete(clubsMember: ClubsMembers) {
     this.confirmationService.confirm({

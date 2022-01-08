@@ -1,4 +1,4 @@
-<div class="p-grid ">
+<div class="p-grid " *ngIf="member.id!=null" >
     <p-toast></p-toast>
     <div class="p-col">
     <div class="p-grid list-demo">
@@ -21,12 +21,12 @@
                         <ng-template let-clubsMember pTemplate="listItem">
                             <div class="p-col-12">
                                 <div class="product-list-item" style="cursor: pointer">
-                                    <img *ngIf="clubsMember.clubs.image" [src]="clubsMember.clubs.image ">
-                                    <img *ngIf="!clubsMember.clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
+                                    <img *ngIf="clubsMember.clubs.image" [src]="clubsMember.clubs.image " style="cursor: pointer" (click)="view(clubsMember)">
+                                    <img *ngIf="!clubsMember.clubs.image"  src="../../../../assets/layout/images/notfound.jpg" style="cursor: pointer" (click)="view(clubsMember)">
                                     <div class="product-list-detail" >
                                         <div class="product-name">{{clubsMember.clubs.libelle}}</div>
                                         <div class="product-description">{{clubsMember.clubs.description}}</div>
-                                        <button (click)="delete(clubsMember)"  class="p-button-warning p-mr-2 p-mb-2" icon="pi pi-trash" label="Delete Member" pButton
+                                        <button (click)="delete(clubsMember)"  class="p-button-warning p-mr-2 p-mb-2" style="margin-top: 2%" icon="pi pi-trash" label="Delete Member" pButton
                                                 pRipple ></button>
                                     </div>
                                 </div>
@@ -36,15 +36,15 @@
                     <ng-template let-clubsMember pTemplate="gridItem">
                         <div class="p-col-12 p-md-4">
                             <div class="product-grid-item card">
-                                <div class="product-grid-item-content" style="cursor: pointer" (click)="view(clubsMember)">
+                                <div class="product-grid-item-content" >
                                     <div class="product-name">{{clubsMember.clubs.libelle}}</div>
-                                    <img *ngIf="clubsMember.clubs.image" [src]="clubsMember.clubs.image " >
-                                    <img *ngIf="!clubsMember.clubs.image "
+                                    <img *ngIf="clubsMember.clubs.image" [src]="clubsMember.clubs.image " style="cursor: pointer" (click)="view(clubsMember)">
+                                    <img *ngIf="!clubsMember.clubs.image " style="cursor: pointer" (click)="view(clubsMember)"
                                          src="../../../../assets/layout/images/notfound.jpg" >
 
 
                                     <div class="product-description">{{clubsMember.clubs.description}}<br>
-                                        <button (click)="delete(clubsMember)"  class="p-button-warning p-mr-2 p-mb-2" icon="pi pi-trash" label="Quit Club" pButton
+                                        <button (click)="delete(clubsMember)"  class="p-button-warning p-mr-2 p-mb-2"  style="margin-top: 2%"  icon="pi pi-trash" label="Quit Club" pButton
                                                 pRipple ></button>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
             <div class="p-col-12">
                 <div class="card">
 
-                    <p-dataView #dv [paginator]="true" [rows]="4" [value]="itemsClubs" filterBy="name"
+                    <p-dataView #dv [paginator]="true" [rows]="4" [value]="items2ClubsMember" filterBy="name"
                                 [sortField]="sortField" [sortOrder]="sortOrder"   layout="list">
                         <ng-template pTemplate="header">
                             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
@@ -76,32 +76,32 @@
                         </ng-template>
 
 
-                        <ng-template let-clubs pTemplate="listItem">
+                        <ng-template let-clubsM pTemplate="listItem">
                             <div class="p-col-12">
                                 <div class="product-list-item">
-                                    <img *ngIf="clubs.image" [src]="clubs.image ">
-                                    <img *ngIf="!clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
+                                    <img *ngIf="clubsM.clubs.image" [src]="clubsM.clubs.image ">
+                                    <img *ngIf="!clubsM.clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
                                     <div class="product-list-detail" >
-                                        <div class="product-name">{{clubs.libelle}}</div>
-                                        <div class="product-description">{{clubs.description}}</div>
+                                        <div class="product-name">{{clubsM.clubs.libelle}}</div>
+                                        <div class="product-description">{{clubsM.clubs.description}}<br>
+                                        <button (click)="add(clubsM.clubs)" class="p-button-info" icon="pi" label="Integrate" pButton
+                                                pRipple></button></div>
                                     </div>
                                 </div>
                             </div>
 
                         </ng-template>
-                        <ng-template let-clubs pTemplate="gridItem">
+                        <ng-template let-clubsM pTemplate="gridItem">
                             <div class="p-col-12 p-md-4">
                                 <div class="product-grid-item card">
                                     <div class="product-grid-item-content" style="cursor: pointer">
-                                        <div class="product-name">{{clubs.libelle}}</div>
-                                        <img *ngIf="clubs.image" [src]="clubs.image " >
-                                        <img *ngIf="!clubs.image "
+                                        <div class="product-name">{{clubsM.clubs.libelle}}</div>
+                                        <img *ngIf="clubsM.clubs.image" [src]="clubsM.clubs.image " >
+                                        <img *ngIf="!clubsM.clubs.image "
                                              src="../../../../assets/layout/images/notfound.jpg" >
-
-
-                                        <div class="product-description">{{clubs.description}}</div>
-                                        <button (click)="add(clubs)" class="p-button-rounded p-button-info" icon="pi pi-plus" pButton
-                                        pRipple></button>
+                                        <div class="product-description">{{clubsM.clubs.description}}<br>
+                                        <button (click)="add(clubsM.clubs)" class="p-button-info" icon="pi" label="Integrate" pButton
+                                        pRipple></button></div>
                                     </div>
 
                                 </div>

@@ -157,6 +157,7 @@ import { ClubsComponent } from './view/jury/clubs/clubs.component';
 import { ClubsDetailsComponent } from './view/jury/clubs-details/clubs-details.component';
 import { ClubsRequestComponent } from './view/jury/clubs-request/clubs-request.component';
 import { ClubsRequestDetailsComponent } from './view/jury/clubs-request-details/clubs-request-details.component';
+import { EditStatusComponent } from './view/members/edit-status/edit-status.component';
 
 
 
@@ -308,6 +309,7 @@ import { ClubsRequestDetailsComponent } from './view/jury/clubs-request-details/
         ClubsDetailsComponent,
         ClubsRequestComponent,
         ClubsRequestDetailsComponent,
+        EditStatusComponent,
 
     ],
     providers: [

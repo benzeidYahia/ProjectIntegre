@@ -7,6 +7,7 @@ import {MemberServiceService} from '../../../controller/service/member-service.s
 import {Router} from '@angular/router';
 import {LoginService} from '../../../controller/service/login.service';
 import {Activite} from '../../../controller/model/activite';
+import {Member} from '../../../controller/model/member';
 
 @Component({
   selector: 'app-creation-club',
@@ -52,6 +53,13 @@ export class CreationClubComponent implements OnInit {
 
   set submitted(value: boolean) {
     this.service.submitted2 = value;
+  }
+  get member(): Member {
+    return this.service.member;
+  }
+
+  set member(value: Member) {
+    this.service.member = value;
   }
   onUpload(event) {
     this.selectedFile = (event.target.files[0] as File);

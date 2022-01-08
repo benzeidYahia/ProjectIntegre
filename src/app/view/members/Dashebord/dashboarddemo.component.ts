@@ -5,6 +5,8 @@ import {Member} from '../../../controller/model/member';
 import {JuryDVE} from '../../../controller/model/jury-dve';
 import {SuperAdminDVE} from '../../../controller/model/super-admin-dve';
 import {LoginService} from '../../../controller/service/login.service';
+import {MemberServiceService} from '../../../controller/service/member-service.service';
+import {JuryServiceService} from '../../../controller/service/jury-service.service';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -27,7 +29,7 @@ export class DashboardDemoComponent implements OnInit {
     home: any[];
 
 
-    constructor( private service: LoginService, private menu: AppComponent) {
+    constructor( private service: LoginService, private menu: AppComponent,  private serviceM: MemberServiceService, private  servicee: JuryServiceService) {
     }
 
     get member(): Member {
@@ -56,11 +58,27 @@ export class DashboardDemoComponent implements OnInit {
     set model(value: any[]) {
         this.service.model = value;
     }
+    get members(): Member {
+        return this.serviceM.member;
+    }
+
+    set members(value: Member) {
+        this.serviceM.member = value;
+    }
+    get jurys(): JuryDVE {
+        return this.servicee.jury;
+    }
+
+    set jurys(value: JuryDVE) {
+        this.servicee.jury = value;
+    }
     ngOnInit() {
         this.admin = null;
         this.jury = null;
         this.member = null;
         this.model = null;
+        this.members = null;
+        this.jurys = null;
         this.menu.layoutMode = 'Overlay';
     }
 }

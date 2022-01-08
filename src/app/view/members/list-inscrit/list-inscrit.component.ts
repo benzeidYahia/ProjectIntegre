@@ -99,6 +99,9 @@ export class ListInscritComponent implements OnInit {
     this.service.listMember = value;
   }
   ngOnInit(): void {
+    if (this.member.id == null){
+      this.router.navigate(['**']);
+    }
     console.log(this.member.id);
     this.service.findClubsMemberInscrit(this.member.id).subscribe(data => this.itemsClubsMember = data);
 

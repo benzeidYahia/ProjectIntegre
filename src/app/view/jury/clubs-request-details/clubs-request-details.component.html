@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="viewDialog" [modal]="true" [style]="{width: '800px'}" header="Section View"
+<p-dialog *ngIf="jury.id!=null"  [(visible)]="viewDialog" [modal]="true" [style]="{width: '800px'}" header="Section View"
           styleClass="p-fluid">
     <ng-template pTemplate="content" style="background-color: lavender;">
         <div class="p-field">

@@ -9,6 +9,7 @@ import {Member} from '../../../controller/model/member';
 import {ClubsMembers} from '../../../controller/model/clubs-members';
 import {Activite} from '../../../controller/model/activite';
 import {JuryServiceService} from '../../../controller/service/jury-service.service';
+import {JuryDVE} from '../../../controller/model/jury-dve';
 
 @Component({
   selector: 'app-clubs',
@@ -31,7 +32,10 @@ export class ClubsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.member = this.user.member;
+    this.jury = this.user.jury;
+    if (this.jury.id == null){
+      this.router.navigate(['**']);
+    }
     this.service.findClubsActif().subscribe( data => this.listClbs = data);
     this.service.findClubsInActif().subscribe( data => this.itemsClubs = data);
   }
@@ -76,6 +80,13 @@ export class ClubsComponent implements OnInit {
   set member(value: Member) {
     this.service.member = value;
   }
+  get jury(): JuryDVE {
+    return this.service.jury;
+  }
+
+  set jury(value: JuryDVE) {
+    this.service.jury = value;
+  }
   get itemsClubsMember(): Array<ClubsMembers> {
     return this.service.itemsClubsMember;
   }
@@ -114,72 +125,6 @@ export class ClubsComponent implements OnInit {
   set listMember(value: Array<Member>) {
     this.service.listMember = value;
   }
-  public deleteMultiple() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to quit the selected Club?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.service.deleteMultipleClubsMemberByid().subscribe(
-            data => {
-              this.service.deleteMultipleClubsMemberIndexById();
-              // tslint:disable-next-line:no-shadowed-variable
-              this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-              // tslint:disable-next-line:no-shadowed-variable
-              this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Successful',
-                detail: 'you left the club',
-                life: 3000
-              });
-            });
-      }
-    });
-  }
-
-  public delete(clubsMember: ClubsMembers) {
-    this.clubsMember = clubsMember;
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to quit: ' + clubsMember.clubs.libelle + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.service.deleteClubsMember(clubsMember).subscribe(data => {
-          this.itemsClubsMember = this.itemsClubsMember.filter(val => val.id !== this.clubsMember.id);
-          this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-          this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'you left the club',
-            life: 3000
-          });
-        });
-      }
-    });
-  }
-  public add(club: Clubs) {
-    this.submitted = true;
-    this.clubsMember.clubs = club;
-    this.clubsMember.member = this.user.member;
-    this.clubsMember.status = 'member';
-    console.log( this.clubsMember.status);
-    this.clubsMember.dateAdherence = new Date();
-    this.service.SaveClubsMember().subscribe(data => {
-      // @ts-ignore
-      this.listClubsMember.push({...data});
-      this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-      this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Successful',
-        detail: 'Clubs added',
-        life: 3000
-      });
-    });
-  }
   get itemsActivite(): Array<Activite> {
     return this.service.itemsActivite;
   }
@@ -194,13 +139,6 @@ export class ClubsComponent implements OnInit {
   set activite(value: Activite) {
     this.service.activite = value;
   }
-  get listActivite(): Array<Activite> {
-    return this.service.listActivite;
-  }
-
-  set listActivite(value: Array<Activite>) {
-    this.service.listActivite = value;
-  }
   public view(clubs: Clubs){
     this.clubs = clubs;
     this.clubsMember.clubs = clubs;
@@ -212,6 +150,11 @@ export class ClubsComponent implements OnInit {
   public activate(clubs: Clubs) {
     this.clubs = clubs;
     this.clubs.status = 'actif';
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to activate this club: ' + clubs.libelle + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
     this.service.ActivateClubs().subscribe(data => {
       this.service.findClubsActif().subscribe(data => this.listClbs = data);
       this.service.findClubsInActif().subscribe(data => this.itemsClubs = data);
@@ -220,21 +163,30 @@ export class ClubsComponent implements OnInit {
         summary: 'Successful',
         detail: 'Clubs Activated',
         life: 3000
-      });
+        });
+       });
+      }
     });
   }
-  public desactivate(clubs: Clubs){
-      this.clubs = clubs;
-      this.clubs.status = 'inactif';
-      this.service.ActivateClubs().subscribe(data => {
-        this.service.findClubsActif().subscribe( data => this.listClbs = data);
-        this.service.findClubsInActif().subscribe( data => this.itemsClubs = data);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Clubs Activated',
-          life: 3000
+  public desactivate(clubs: Clubs) {
+    this.clubs = clubs;
+    this.clubs.status = 'inactif';
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to desactivate this club: ' + clubs.libelle + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.service.ActivateClubs().subscribe(data => {
+          this.service.findClubsActif().subscribe(data => this.listClbs = data);
+          this.service.findClubsInActif().subscribe(data => this.itemsClubs = data);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Clubs Desactivated',
+            life: 3000
+          });
         });
-      });
+      }
+    });
   }
 }

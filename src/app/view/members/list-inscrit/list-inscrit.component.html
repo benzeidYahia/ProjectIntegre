@@ -1,4 +1,4 @@
-<div class="p-grid ">
+<div class="p-grid " *ngIf="member.id!=null" >
     <p-toast></p-toast>
 
     <div class="p-col">
@@ -14,9 +14,7 @@
                             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
 
                                 <h2><b style="color: #4e7988">New Member</b></h2>
-                                <div style="float: right">
-                                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-                                </div>
+
                             </div>
                         </ng-template>
 
@@ -33,7 +31,7 @@
                                         <div class="product-description"> <b style="color: black">Fillier: </b><b style="color: #6c9aaa">{{memberclb.member.fillier}}</b> <br>
                                             <b style="color: black">Niveau: </b><b style="color: #6c9aaa">{{memberclb.member.niveau}}</b> <br>
                                         </div>
-                                        <button (click)="accepte(memberclb)" [style.visibility]=" clubsMember.status == 'president'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="accepte" pButton
+                                        <button (click)="accepte(memberclb)" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="accepte" pButton
                                                 pRipple ></button>
                                     </div>
                                 </div>

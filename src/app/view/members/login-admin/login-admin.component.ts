@@ -8,6 +8,7 @@ import {SuperAdminDVE} from '../../../controller/model/super-admin-dve';
 import {Route, Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {AppComponent} from '../../../app.component';
+import {MemberServiceService} from '../../../controller/service/member-service.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ import {AppComponent} from '../../../app.component';
 export class LoginAdminComponent implements OnInit {
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: LoginService, private router: Router, private menu: AppComponent) {
+              private service: LoginService, private router: Router, private menu: AppComponent, private  serv: MemberServiceService) {
 
   }
   private _role: string;
@@ -134,8 +135,9 @@ export class LoginAdminComponent implements OnInit {
               });
           this.service.findMember(this.login, this.password).subscribe(
               data => {
-                  this.member = data;
                   this.correct = true;
+                  this.member = data;
+                  this.serv.member = this.member;
                   this.menu.layoutMode = 'slim';
                   this.model = [
                       {label: 'Profil', icon: 'pi pi-fw pi-user', routerLink: ['pages/profil']},
@@ -147,7 +149,6 @@ export class LoginAdminComponent implements OnInit {
               }, (errorResponse: HttpErrorResponse) => {
                   this.member = null;
                   this.correct = false;
-                  console.log(errorResponse.message);
 
               });
       }

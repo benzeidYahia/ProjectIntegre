@@ -1,4 +1,4 @@
-<div class="container p-card p-col-9" style="margin-top: 2%; margin-left: 10%">
+<div class="container p-card p-col-9" *ngIf="member.id!=null"  style="margin-top: 2%; margin-left: 10%">
         <div class="p-fluid">
 
 
@@ -41,3 +41,4 @@
     </div>
 
 </div>
+<div *ngIf="member.id!=null"  routerLink="**"></div>

@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="createDialog" [modal]="true" [style]="{width: '550px'}" header="Activite Create"
+<p-dialog [(visible)]="createDialog" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '550px'}" header="Activite Create"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 

@@ -8,6 +8,7 @@ import {Activite} from '../../../controller/model/activite';
 import {Clubs} from '../../../controller/model/clubs';
 import {Member} from '../../../controller/model/member';
 import {ClubsMembers} from '../../../controller/model/clubs-members';
+import {error} from 'protractor';
 
 @Component({
   selector: 'app-tresorerie-new',
@@ -157,6 +158,9 @@ export class TresorerieNewComponent implements OnInit {
     this.service.listActivite = value;
   }
   ngOnInit(): void {
+    if (this.member.id == null){
+      this.router.navigate(['**']);
+    }
   }
   get Tresor(): Tresorerie {
     return this.service.Tresor;
@@ -179,6 +183,7 @@ export class TresorerieNewComponent implements OnInit {
   public saveTresor() {
       this.submitted = true;
       this.Tresor.activite = this.activite;
+      this.Tresor.activite.budget = this.activite.budget;
       this.Tresor.dateTresorerie = new Date();
       this.service.SaveTresor().subscribe(data => {
       // tslint:disable-next-line:no-shadowed-variable
@@ -186,10 +191,17 @@ export class TresorerieNewComponent implements OnInit {
         this.messageService.add({
         severity: 'success',
         summary: 'Successful',
-        detail: 'Cours Created',
+        detail: 'Amount Saved',
         life: 3000
       });
-    });
+    }, error1 =>  {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Warning',
+          detail: 'Error in the Amount',
+          life: 3000
+        });
+      });
       this.createTresorDialog = false;
       this.Tresor = new Tresorerie();
   }

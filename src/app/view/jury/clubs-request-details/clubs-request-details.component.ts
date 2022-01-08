@@ -4,6 +4,7 @@ import {JuryServiceService} from '../../../controller/service/jury-service.servi
 import {Router} from '@angular/router';
 import {LoginService} from '../../../controller/service/login.service';
 import {DemandeCreationClb} from '../../../controller/model/demande-creation-clb';
+import {JuryDVE} from '../../../controller/model/jury-dve';
 
 @Component({
   selector: 'app-clubs-request-details',
@@ -18,6 +19,9 @@ export class ClubsRequestDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.jury.id == null){
+      this.router.navigate(['**']);
+    }
   }
   get demande(): DemandeCreationClb {
     return this.service.demande;
@@ -60,7 +64,13 @@ export class ClubsRequestDetailsComponent implements OnInit {
       });
     });
   }
+  get jury(): JuryDVE {
+    return this.service.jury;
+  }
 
+  set jury(value: JuryDVE) {
+    this.service.jury = value;
+  }
   get viewDialog(): boolean {
     return this.service.viewDialog;
   }

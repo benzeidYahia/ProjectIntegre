@@ -3,7 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container emp-profile p-card">
+<div *ngIf="member.id!=null"  class="container emp-profile p-card">
     <form method="post">
         <div class="row">
             <div class="p-col-4 p-card" style="background-color: #4e7988">

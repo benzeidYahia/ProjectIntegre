@@ -21,10 +21,12 @@ export class MemberServiceService {
   private _itemsMember: Array<Member>;
   private _listMember: Array<Member>;
   private _member: Member;
+  private _memberStatus: Member;
   private _itemsTresor: Array<Tresorerie>;
   private _listTresor: Array<Tresorerie>;
   private _Tresor: Tresorerie;
   private _itemsClubsMember: Array<ClubsMembers>;
+  private _items2ClubsMember: Array<ClubsMembers>;
   private _listClubsMember: Array<ClubsMembers>;
   private _clubsMember: ClubsMembers;
   private _itemsClubs: Array<Clubs>;
@@ -38,6 +40,7 @@ export class MemberServiceService {
   private _createDialog: boolean;
   private _createTresorDialog: boolean;
   private _editDialog: boolean;
+  private _editStatusDialog: boolean;
   private _editTresorerieDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
@@ -47,6 +50,14 @@ export class MemberServiceService {
   private _itemsdemande: Array<DemandeCreationClb>;
   private _listdemande: Array<DemandeCreationClb>;
 
+
+  get editStatusDialog(): boolean {
+    return this._editStatusDialog;
+  }
+
+  set editStatusDialog(value: boolean) {
+    this._editStatusDialog = value;
+  }
 
   get submitted2(): boolean {
     return this._submitted2;
@@ -223,7 +234,16 @@ export class MemberServiceService {
   set clubs(value: Clubs) {
     this._clubs = value;
   }
+  get items2ClubsMember(): Array<ClubsMembers> {
+    if (this._items2ClubsMember == null){
+      this._items2ClubsMember = new Array<ClubsMembers>();
+    }
+    return this._items2ClubsMember;
+  }
 
+  set items2ClubsMember(value: Array<ClubsMembers>) {
+    this._items2ClubsMember = value;
+  }
   get itemsClubsMember(): Array<ClubsMembers> {
     if (this._itemsClubsMember == null){
       this._itemsClubsMember = new Array<ClubsMembers>();
@@ -316,6 +336,16 @@ export class MemberServiceService {
     return this._member;
   }
 
+  set memberStatus(value: Member) {
+    this._memberStatus = value;
+  }
+  get memberStatus(): Member {
+    if (this._memberStatus == null){
+      this._memberStatus = new Member();
+    }
+    return this._memberStatus;
+  }
+  // tslint:disable-next-line:adjacent-overload-signatures
   set member(value: Member) {
     this._member = value;
   }
@@ -337,14 +367,17 @@ export class MemberServiceService {
   public EditActivite(): Observable<number> {
     return this.http.put<number>(this.memberUrl + 'activite/', this.activite);
   }
+  public EditStatus(): Observable<number> {
+    return this.http.put<number>(this.memberUrl + 'clubsmembers/', this.clubsMember);
+  }
   public create(): Observable<Member> {
     return this.http.post<Member>(this.memberUrl + 'member/', this.member);
   }
   public findActivitieBudget(id: number): Observable<Array<Tresorerie>> {
     return this.http.get<Array<Tresorerie>>( 'http://localhost:8036/member/tresorerie/activite/id/' + id  );
   }
-  public findAllMember(): Observable<Array<Member>> {
-    return this.http.get<Array<Member>>(this.memberUrl );
+  public findClubIds(): Observable<Array<number>> {
+    return this.http.get<Array<number>>(this.memberUrl + 'clubsmembers/clubs/id/' + this.member.id );
   }
   public findClubsMember(id: number): Observable<Array<ClubsMembers>> {
     return this.http.get<Array<ClubsMembers>>( 'http://localhost:8036/member/clubsmembers/member/id/' + id + '/etat/1/status/actif' );
@@ -355,9 +388,9 @@ export class MemberServiceService {
   public findAllClubs(): Observable<Array<Clubs>> {
     return this.http.get<Array<Clubs>>(this.memberUrl + 'clubs/' );
   }
-  public findAllClubsNotIn(id: number[]): Observable<Array<Clubs>> {
+  public findAllClubsNotIn(id: Array<number>): Observable<Array<ClubsMembers>> {
     console.log(id.reverse());
-    return this.http.post<Array<Clubs>>('http://localhost:8036/member/clubs/clubs/', id );
+    return this.http.post<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/clubsM/true', id );
   }
   public findClubsActivitie(): Observable<Array<Activite>> {
     console.log(this.clubsMember.clubs.libelle);

@@ -169,6 +169,9 @@ export class TresorerieComponent implements OnInit {
   }
   ngOnInit(): void {
     this.service.findActivitieBudget(this.activite.id).subscribe(data => this.itemsTresor = data);
+    if (this.member.id == null){
+      this.router.navigate(['**']);
+    }
   }
 
 }

@@ -53,5 +53,8 @@ export class MemberProfilComponent implements OnInit {
   }
   ngOnInit(): void {
     this.member = this.user.member;
+    if (this.member.id == null){
+      this.router.navigate(['**']);
+    }
   }
 }

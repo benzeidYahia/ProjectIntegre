@@ -21,6 +21,9 @@ export class ClubsRequestComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.findRequest().subscribe(data => this.itemsdemande = data);
+    if (this.jury.id == null){
+      this.router.navigate(['**']);
+    }
   }
   get demande(): DemandeCreationClb {
     return this.service.demande;

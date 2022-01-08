@@ -1,4 +1,4 @@
-<div class="p-grid ">
+<div class="p-grid " *ngIf="jury.id!=null">
     <p-toast></p-toast>
     <div class="p-col">
         <div class="p-grid list-demo">
@@ -20,15 +20,15 @@
 
                         <ng-template let-clubs pTemplate="listItem">
                             <div class="p-col-12">
-                                <div class="product-list-item" style="cursor: pointer" (click)="view(clubs)">
-                                    <img *ngIf="clubs.image" [src]="clubs.image ">
-                                    <img *ngIf="!clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
+                                <div class="product-list-item" >
+                                    <img *ngIf="clubs.image" [src]="clubs.image " style="cursor: pointer" (click)="view(clubs)">
+                                    <img *ngIf="!clubs.image" style="cursor: pointer" (click)="view(clubs)" src="../../../../assets/layout/images/notfound.jpg">
                                     <div class="product-list-detail" >
                                         <div class="product-name">{{clubs.libelle}}</div>
                                         <div class="product-description">{{clubs.description}}</div>
-                                        <button (click)="desactivate(clubs)"  class="p-button-warning p-mr-2 p-mb-2" style="margin-top: 2%"  label="Desactivate" pButton
-                                                pRipple ></button>
-                                    </div>
+
+                                    </div> <button (click)="desactivate(clubs)"  class="p-button-warning p-mr-2 p-mb-2"   label="Desactivate" pButton
+                                                   pRipple ></button>
                                 </div>
                             </div>
 
@@ -36,10 +36,10 @@
                         <ng-template let-clubs pTemplate="gridItem" style="height: 500px;">
                             <div class="p-col-12 p-md-4">
                                 <div class="product-grid-item card">
-                                    <div class="product-grid-item-content" style="cursor: pointer" (click)="view(clubs)">
+                                    <div class="product-grid-item-content" >
                                         <div class="product-name">{{clubs.libelle}}</div>
-                                        <img *ngIf="clubs.image" [src]="clubs.image " >
-                                        <img *ngIf="!clubs.image "
+                                        <img *ngIf="clubs.image" [src]="clubs.image " style="cursor: pointer" (click)="view(clubs)">
+                                        <img *ngIf="!clubs.image " style="cursor: pointer" (click)="view(clubs)"
                                              src="../../../../assets/layout/images/notfound.jpg" >
 
 
@@ -78,13 +78,16 @@
 
                         <ng-template let-clubs pTemplate="listItem">
                             <div class="p-col-12">
-                                <div class="product-list-item" (click)="view(clubs)">
-                                    <img *ngIf="clubs.image" [src]="clubs.image ">
-                                    <img *ngIf="!clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
+                                <div class="product-list-item" >
+                                    <img *ngIf="clubs.image" [src]="clubs.image " style="cursor: pointer" (click)="view(clubs)">
+                                    <img *ngIf="!clubs.image"  src="../../../../assets/layout/images/notfound.jpg" style="cursor: pointer" (click)="view(clubs)">
                                     <div class="product-list-detail" >
                                         <div class="product-name">{{clubs.libelle}}</div>
                                         <div class="product-description">{{clubs.description}}</div>
+
                                     </div>
+                                    <button (click)="activate(clubs)"  class="p-button-warning p-mr-2 p-mb-2"  label="Activate " pButton
+                                                   pRipple ></button>
                                 </div>
                             </div>
 
@@ -92,10 +95,10 @@
                         <ng-template let-clubs pTemplate="gridItem">
                             <div class="p-col-12 p-md-4">
                                 <div class="product-grid-item card">
-                                    <div class="product-grid-item-content" style="cursor: pointer  " (click)="view(clubs)">
+                                    <div class="product-grid-item-content"  >
                                         <div class="product-name">{{clubs.libelle}}</div>
-                                        <img *ngIf="clubs.image" [src]="clubs.image " >
-                                        <img *ngIf="!clubs.image "
+                                        <img *ngIf="clubs.image" [src]="clubs.image "style="cursor: pointer" (click)="view(clubs)" >
+                                        <img *ngIf="!clubs.image " style="cursor: pointer" (click)="view(clubs)"
                                              src="../../../../assets/layout/images/notfound.jpg" >
 
 

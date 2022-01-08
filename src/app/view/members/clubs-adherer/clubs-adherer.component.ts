@@ -30,6 +30,18 @@ export class ClubsAdhererComponent implements OnInit {
   set createDialog(value: boolean) {
     this.service.createDialog = value;
   }
+  get editStatusDialog(): boolean {
+    return this.service.editStatusDialog;
+  }
+
+  set editStatusDialog(value: boolean) {
+    this.service.editStatusDialog = value;
+  }
+  public openEditStatus(memb: ClubsMembers) {
+    this.submitted = false;
+    this.editStatusDialog = true;
+    this.clubsMember = memb;
+  }
   public openCreateActivite() {
     this.submitted = false;
     this.createDialog = true;
@@ -141,7 +153,13 @@ export class ClubsAdhererComponent implements OnInit {
   set listClubsMember(value: Array<ClubsMembers>) {
     this.service.listClubsMember = value;
   }
+  get memberStatus(): Member {
+    return this.service.memberStatus;
+  }
 
+  set memberStatus(value: Member) {
+    this.service.memberStatus = value;
+  }
   get clubsMember(): ClubsMembers {
     return this.service.clubsMember;
   }
@@ -186,6 +204,9 @@ export class ClubsAdhererComponent implements OnInit {
     this.service.listActivite = value;
   }
   ngOnInit(): void {
+    if (this.member.id == null){
+      this.router.navigate(['**']);
+    }
   }
   public delete(clubsMember: ClubsMembers) {
     this.confirmationService.confirm({

@@ -16,14 +16,13 @@ import {Activite} from '../../../controller/model/activite';
   styleUrls: ['./member-clubs.component.scss']
 })
 export class MemberClubsComponent implements OnInit {
-id: number;
+ids: Array<number>;
 sortOrder: number;
 sortField: string;
 cols: any[];
 tabid: any[];
-listId: number[] = [];
+listId: Array<number>;
 lengthId: number;
-ids: Array<number>  = [];
 i = 0;
 sortKey: any;
 sortOptions: SelectItem[];
@@ -42,16 +41,22 @@ sortOptions: SelectItem[];
 
   ngOnInit(): void {
     this.member = this.user.member;
+    this.member = this.user.member;
+    console.log(this.user.member.id);
+    if (this.member.id == null){
+      this.router.navigate(['**']);
+    }
    // this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
     this.service.findClubsMember(this.member.id).subscribe(data => {
       this.itemsClubsMember = data;
-      for (let j = 0; j < this.itemsClubsMember.length; j++) {
-        this.listId.push(this.itemsClubsMember[j].clubs.id);
-        }});
-    this.service.findAllClubsNotIn([1,2,3]).subscribe(data => this.itemsClubs = data);
-    console.log(this.listId);
-    console.log(this.listId.length);
-    console.log(this.itemsClubs);
+      this.service.findClubIds().subscribe( data => {
+        this.ids = data;
+        console.log(this.ids);
+        this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+
+      });
+     });
+
   }
   get itemsClubs(): Array<Clubs> {
     if (this.service.itemsClubs == null){
@@ -100,6 +105,12 @@ sortOptions: SelectItem[];
 
   set itemsClubsMember(value: Array<ClubsMembers>) {
     this.service.itemsClubsMember = value;
+  }get items2ClubsMember(): Array<ClubsMembers> {
+    return this.service.items2ClubsMember;
+  }
+
+  set items2ClubsMember(value: Array<ClubsMembers>) {
+    this.service.items2ClubsMember = value;
   }
 
   get listClubsMember(): Array<ClubsMembers> {
@@ -144,8 +155,15 @@ sortOptions: SelectItem[];
               // tslint:disable-next-line:no-shadowed-variable
               this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
               // tslint:disable-next-line:no-shadowed-variable
-              this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-              this.messageService.add({
+              this.service.findClubsMember(this.member.id).subscribe(data => {
+                this.itemsClubsMember = data;
+                this.service.findClubIds().subscribe( data => {
+                  this.ids = data;
+                  console.log(this.ids);
+                  this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+
+                });
+              });              this.messageService.add({
                 severity: 'success',
                 summary: 'Successful',
                 detail: 'you left the club',
@@ -165,8 +183,15 @@ sortOptions: SelectItem[];
       accept: () => {
         this.service.deleteClubsMember(clubsMember).subscribe(data => {
           this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-          this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-          this.messageService.add({
+          this.service.findClubsMember(this.member.id).subscribe(data => {
+            this.itemsClubsMember = data;
+            this.service.findClubIds().subscribe( data => {
+              this.ids = data;
+              console.log(this.ids);
+              this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+
+            });
+          });          this.messageService.add({
             severity: 'success',
             summary: 'Successful',
             detail: 'you left the club',
@@ -180,14 +205,21 @@ sortOptions: SelectItem[];
     this.submitted = true;
       this.clubsMember.clubs = club;
       this.clubsMember.member = this.user.member;
-      this.clubsMember.status = 'member';
+      this.clubsMember.status = 'membre';
       console.log( this.clubsMember.status);
       this.clubsMember.dateAdherence = new Date();
       this.itemsClubs = new Array<Clubs>();
       this.service.SaveClubsMember().subscribe(data => {
         this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
-        this.service.findClubsMember(this.user.member.id).subscribe(data => this.itemsClubsMember = data);
-        this.messageService.add({
+        this.service.findClubsMember(this.member.id).subscribe(data => {
+          this.itemsClubsMember = data;
+          this.service.findClubIds().subscribe( data => {
+            this.ids = data;
+            console.log(this.ids);
+            this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+
+          });
+        });        this.messageService.add({
           severity: 'success',
           summary: 'Successful',
           detail: 'Clubs added',

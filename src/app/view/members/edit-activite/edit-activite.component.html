@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="editDialog" [modal]="true" [style]="{width: '550px'}" header="Course Create"
+<p-dialog [(visible)]="editDialog" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '550px'}" header="Course Create"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 
