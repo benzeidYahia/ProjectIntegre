@@ -4,6 +4,7 @@ import {MemberServiceService} from '../../../controller/service/member-service.s
 import {Router} from '@angular/router';
 import {Member} from '../../../controller/model/member';
 import {LoginService} from '../../../controller/service/login.service';
+import {ClubsMembers} from '../../../controller/model/clubs-members';
 
 @Component({
   selector: 'app-member-profil',
@@ -56,5 +57,17 @@ export class MemberProfilComponent implements OnInit {
     if (this.member.id == null){
       this.router.navigate(['**']);
     }
+  }
+  public openEditProfil(memb: Member) {
+    this.submitted = false;
+    this.editProfil = true;
+    this.member = memb;
+  }
+  get editProfil(): boolean {
+    return this.service.editProfil;
+  }
+
+  set editProfil(value: boolean) {
+    this.service.editProfil = value;
   }
 }

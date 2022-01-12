@@ -1,0 +1,42 @@
+<p-dialog [(visible)]="editProfil" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '550px'}" header="Course Create"
+          styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+
+        <div class="p-field">
+            <label for="libelle">FirstName</label>
+            <input [(ngModel)]="member.nom" autofocus id="libelle" pInputText required type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="description">LastName</label>
+            <input [(ngModel)]="member.prenom" autofocus id="description" pInputText required type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="numeroOrder">Code Etudiant </label>
+            <input [(ngModel)]="member.numeroEtudiant" autofocus id="numeroOrder" pInputText required type="number"/>
+        </div>
+        <div class="p-field">
+            <label for="Level">Level</label>
+            <input [(ngModel)]="member.niveau" autofocus id="Level" pInputText required type="text"/>
+        </div>
+        <div class="p-field">
+            <label for="Fillier">Fillier </label>
+            <input [(ngModel)]="member.fillier" autofocus id="Fillier" pInputText required type="number"/>
+        </div>
+        <div class="p-field">
+            <label for="urlImage">Image (Link From drive)</label>
+            <input [(ngModel)]="member.image" autofocus id="urlImage" pInputText required type="text"/>
+            <img *ngIf="member.image" [src]="urlfind(member.image) " style="width: 100%;" id="logo">
+
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button (click)="hideEditDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="editProfile()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
+    </ng-template>
+</p-dialog>
+
+
+

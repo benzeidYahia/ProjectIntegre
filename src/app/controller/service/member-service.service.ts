@@ -34,8 +34,7 @@ export class MemberServiceService {
   private _listClbs: Array<Clubs>;
   private _listClubs: Array<Clubs>;
   private _clubs: Clubs;
-
-   private _activite: Activite;
+  private _activite: Activite;
   private _itemsActivite: Array<Activite>;
   private _listActivite: Array<Activite>;
   private _createDialog: boolean;
@@ -43,6 +42,7 @@ export class MemberServiceService {
   private _editDialog: boolean;
   private _editStatusDialog: boolean;
   private _editTresorerieDialog: boolean;
+  private _editProfil: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
   private _submitted2: boolean;
@@ -51,6 +51,14 @@ export class MemberServiceService {
   private _itemsdemande: Array<DemandeCreationClb>;
   private _listdemande: Array<DemandeCreationClb>;
 
+
+  get editProfil(): boolean {
+    return this._editProfil;
+  }
+
+  set editProfil(value: boolean) {
+    this._editProfil = value;
+  }
 
   get editStatusDialog(): boolean {
     return this._editStatusDialog;
@@ -377,6 +385,9 @@ export class MemberServiceService {
   }
   public EditActivite(): Observable<number> {
     return this.http.put<number>(this.memberUrl + 'activite/', this.activite);
+  }
+  public EditProfile(): Observable<number> {
+    return this.http.put<number>(this.memberUrl + 'member/', this.member);
   }
   public EditStatus(): Observable<number> {
     return this.http.put<number>(this.memberUrl + 'clubsmembers/', this.clubsMember2);

@@ -159,6 +159,7 @@ import { ClubsRequestComponent } from './view/jury/clubs-request/clubs-request.c
 import { ClubsRequestDetailsComponent } from './view/jury/clubs-request-details/clubs-request-details.component';
 import { EditStatusComponent } from './view/members/edit-status/edit-status.component';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { EditProfilComponent } from './view/members/edit-profil/edit-profil.component';
 
 
 
@@ -312,7 +313,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
         ClubsRequestComponent,
         ClubsRequestDetailsComponent,
         EditStatusComponent,
-
+        EditProfilComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
