@@ -6,8 +6,8 @@ import {HttpClient} from '@angular/common/http';
 import {MemberServiceService} from '../../../controller/service/member-service.service';
 import {Router} from '@angular/router';
 import {LoginService} from '../../../controller/service/login.service';
-import {Activite} from '../../../controller/model/activite';
 import {Member} from '../../../controller/model/member';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-creation-club',
@@ -15,10 +15,9 @@ import {Member} from '../../../controller/model/member';
   styleUrls: ['./creation-club.component.scss']
 })
 export class CreationClubComponent implements OnInit {
-  uploadedFiles: any ;
-  selectedFile: File;
+
   constructor(private messageService: MessageService, public sanitizer: DomSanitizer,
-              private confirmationService: ConfirmationService, private httpClient: HttpClient,
+              private confirmationService: ConfirmationService, private http: HttpClient,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
 
@@ -61,23 +60,25 @@ export class CreationClubComponent implements OnInit {
   set member(value: Member) {
     this.service.member = value;
   }
-  onUpload(event) {
-    this.selectedFile = (event.target.files[0] as File);
-    const fd = new FormData();
-    // const request = new XMLHttpRequest();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    // request.open("POST","http://edugamescenter.com/uploadimage.php");
-    // request.send(fd);
-    // http://localhost:4200/assets/image
-    this.httpClient.post('http://localhost:4200/upload.php', fd)
-        .subscribe(res => {
-          console.log(res);
-        });
+  public urlfind(link: any) {
+    if (link !== null) {
+      const url = link;
+      const found = url.match(/d\/([A-Za-z0-9\-\_]+)/);
+      if (found !== null) {
+        console.log('hadaaaaa found== ' + found[1]);
+        return 'https://drive.google.com/uc?export=view&id=' + found[1];
+      }
+    }
+    return link;
   }
   public saveRequest() {
     this.submitted = true;
     this.demande.member = this.user.member;
     this.demande.dateCreation = new Date();
+    if (this.demande.image) {
+      console.log(this.demande.image);
+      this.demande.image = this.urlfind(this.demande.image);
+    }
     this.service.SaveRequest().subscribe(data => {
         // tslint:disable-next-line:no-shadowed-variable
         this.messageService.add({
@@ -88,5 +89,6 @@ export class CreationClubComponent implements OnInit {
         });
       });
     this.demande = new DemandeCreationClb();
+
   }
 }

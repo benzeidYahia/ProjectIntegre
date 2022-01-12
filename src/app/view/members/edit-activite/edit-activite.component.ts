@@ -157,6 +157,17 @@ export class EditActiviteComponent implements OnInit {
       });
     this.editDialog = false;
   }
+  public urlfind(link: any) {
+    if (link !== null) {
+      const url = link;
+      const found = url.match(/d\/([A-Za-z0-9\-\_]+)/);
+      if (found !== null) {
+        console.log('hadaaaaa found== ' + found[1]);
+        return 'https://drive.google.com/uc?export=view&id=' + found[1];
+      }
+    }
+    return link;
+  }
   ngOnInit(): void {
   }
   onUpload(event) {

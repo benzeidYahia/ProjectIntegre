@@ -158,11 +158,13 @@ import { ClubsDetailsComponent } from './view/jury/clubs-details/clubs-details.c
 import { ClubsRequestComponent } from './view/jury/clubs-request/clubs-request.component';
 import { ClubsRequestDetailsComponent } from './view/jury/clubs-request-details/clubs-request-details.component';
 import { EditStatusComponent } from './view/members/edit-status/edit-status.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 
 
 @NgModule({
     imports: [
+        AngularFileUploaderModule,
         BrowserModule,
         FormsModule,
         AppRoutingModule,

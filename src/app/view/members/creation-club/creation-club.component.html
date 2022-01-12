@@ -1,37 +1,49 @@
 <div class="container p-card p-col-9" *ngIf="member.id!=null"  style="margin-top: 2%; margin-left: 10%">
         <div class="p-fluid">
-
-
+            <p-toast></p-toast>
 <div class="p-col-12">
     <h1 style="text-align: center"><b style="color: #0a3e41">Request Creating Club</b></h1>
     <div class="p-field ">
-        <label for="libelle">Clubs Name</label>
+        <h5 for="libelle">Clubs Name</h5>
         <input [(ngModel)]="demande.libelle" autofocus id="libelle" pInputText required type="text"/>
-
-        <label for="numeroOrder">Categorie </label>
+        <small *ngIf="submitted && !demande.libelle" class="p-invalid">libelle is required.</small>
+    </div>
+    <div class="p-field ">
+        <h5 for="numeroOrder">Categorie </h5>
         <input [(ngModel)]="demande.categorie" autofocus id="numeroOrder" pInputText required type="text"/>
-
+        <small *ngIf="submitted && !demande.categorie" class="p-invalid">categorie is required.</small>
     </div>
 
+
+
     <div class="p-field ">
-        <label for="description">Description</label>
+        <h5 for="description">Description</h5>
         <textarea [(ngModel)]="demande.description" autofocus id="description" pInputText required type="text"></textarea>
+        <small *ngIf="submitted && !demande.description" class="p-invalid">description is required.</small>
     </div>
     <div class="p-field ">
-        <label for="name">Name ReferentPedagogique </label>
+        <h5 for="name">Name ReferentPedagogique </h5>
         <input [(ngModel)]="demande.referentPedagogique" autofocus id="name" pInputText required type="text"/>
-
+        <small *ngIf="submitted && !demande.referentPedagogique" class="p-invalid">referent is required.</small>
     </div>
     <div class="p-field ">
-        <h5>Image</h5>
-        <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"
-                      multiple="multiple" accept="image/*" maxFileSize="1000000">
-            <ng-template pTemplate="content">
 
-                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+        <h5 for="urlImage">Image (Link From drive)</h5>
+        <input [(ngModel)]="demande.image" autofocus id="urlImage" pInputText required type="text"/>
+        <img *ngIf="demande.image" [src]="urlfind(demande.image) " style="width: 100%;" id="logo">
 
-            </ng-template>
-        </p-fileUpload>
+        <!-- <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"
+                       multiple="multiple" accept="image/*" maxFileSize="1000000">
+             <ng-template pTemplate="content">
+
+                 <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+
+             </ng-template>
+         </p-fileUpload>-->
+
+
+
+
     </div>
        </div>
 
@@ -39,6 +51,5 @@
 
     <button (click)="saveRequest()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
     </div>
-
+    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 </div>
-<div *ngIf="member.id!=null"  routerLink="**"></div>

@@ -22,11 +22,11 @@ export class EditStatusComponent implements OnInit {
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
   get clubsMember(): ClubsMembers {
-    return this.service.clubsMember;
+    return this.service.clubsMember2;
   }
 
   set clubsMember(value: ClubsMembers) {
-    this.service.clubsMember = value;
+    this.service.clubsMember2 = value;
   }
   get clubs(): Clubs {
     return this.service.clubs;
@@ -85,6 +85,8 @@ export class EditStatusComponent implements OnInit {
   public editStatus() {
     this.submitted = true;
     this.service.EditStatus().subscribe(data => {
+      this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
+      this.service.findClubsMembers().subscribe(data => this.listClubsMember = data);
       // tslint:disable-next-line:no-shadowed-variable
       this.messageService.add({
         severity: 'success',

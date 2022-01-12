@@ -26,15 +26,9 @@
                     <input type="button" (click)="onUploads()" value="upload Image">
                 </div>
             </div> -->
-            <h5>Image</h5>
-            <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"
-                          multiple="multiple" accept="image/*" maxFileSize="1000000">
-                <ng-template pTemplate="content">
-
-                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-
-                </ng-template>
-            </p-fileUpload>
+            <label for="urlImage">Image (Link From drive)</label>
+            <input [(ngModel)]="activite.image" autofocus id="urlImage" pInputText required type="text"/>
+            <img *ngIf="activite.image" [src]="urlfind(activite.image) " style="width: 100%;" id="logo">
         </div>
         <div class="p-field">
             <label for="start"> Date Debut</label>

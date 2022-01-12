@@ -29,6 +29,7 @@ export class MemberServiceService {
   private _items2ClubsMember: Array<ClubsMembers>;
   private _listClubsMember: Array<ClubsMembers>;
   private _clubsMember: ClubsMembers;
+  private _clubsMember2: ClubsMembers;
   private _itemsClubs: Array<Clubs>;
   private _listClbs: Array<Clubs>;
   private _listClubs: Array<Clubs>;
@@ -276,6 +277,16 @@ export class MemberServiceService {
   set clubsMember(value: ClubsMembers) {
     this._clubsMember = value;
   }
+  get clubsMember2(): ClubsMembers {
+    if (this._clubsMember2 == null){
+      this._clubsMember2 = new ClubsMembers();
+    }
+    return this._clubsMember2;
+  }
+
+  set clubsMember2(value: ClubsMembers) {
+    this._clubsMember2 = value;
+  }
 
   get createDialog(): boolean {
     return this._createDialog;
@@ -368,7 +379,7 @@ export class MemberServiceService {
     return this.http.put<number>(this.memberUrl + 'activite/', this.activite);
   }
   public EditStatus(): Observable<number> {
-    return this.http.put<number>(this.memberUrl + 'clubsmembers/', this.clubsMember);
+    return this.http.put<number>(this.memberUrl + 'clubsmembers/', this.clubsMember2);
   }
   public create(): Observable<Member> {
     return this.http.post<Member>(this.memberUrl + 'member/', this.member);

@@ -31,6 +31,33 @@ export class CreateActiviteComponent implements OnInit {
               private confirmationService: ConfirmationService, private httpClient: HttpClient,
               private service: MemberServiceService, private router: Router, private user: LoginService) {
   }
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUploadDB() {
+    console.log(this.selectedFile);
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    this.httpClient.post('http://localhost:8080/image/upload', uploadImageData, { observe: 'response' }).subscribe((response) => {
+          if (response.status === 200) {
+            this.message = 'Image uploaded successfully';
+          } else {
+            this.message = 'Image not uploaded successfully';
+          }
+        }
+  );
+  }
+  getImage() {
+    this.httpClient.get('http://localhost:8080/image/get/' + this.imageName).subscribe(
+    res => {
+      this.retrieveResonse = res;
+      this.base64Data = this.retrieveResonse.picByte;
+      this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+    }
+
+  );
+  }
   /*
   getImage() {
     this.httpClient.get('http://localhost:8036/member/image/get/' + this.imageName).subscribe(
@@ -211,9 +238,24 @@ export class CreateActiviteComponent implements OnInit {
     this.createDialog = false;
     this.submitted = false;
   }
+  public urlfind(link: any) {
+    if (link !== null) {
+      const url = link;
+      const found = url.match(/d\/([A-Za-z0-9\-\_]+)/);
+      if (found !== null) {
+        console.log('hadaaaaa found== ' + found[1]);
+        return 'https://drive.google.com/uc?export=view&id=' + found[1];
+      }
+    }
+    return link;
+  }
   public saveActivite() {
     this.submitted = true;
     this.activite.clubs = this.clubsMember.clubs;
+    if (this.activite.image) {
+      console.log(this.activite.image);
+      this.activite.image = this.urlfind(this.activite.image);
+    }
     console.log(this.activite.clubs.id);
     if (this.activite.id == null) {
       this.service.SaveActivite().subscribe(data => {

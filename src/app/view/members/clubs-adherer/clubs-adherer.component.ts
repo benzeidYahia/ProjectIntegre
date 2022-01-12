@@ -40,7 +40,7 @@ export class ClubsAdhererComponent implements OnInit {
   public openEditStatus(memb: ClubsMembers) {
     this.submitted = false;
     this.editStatusDialog = true;
-    this.clubsMember = memb;
+    this.clubsMember2 = memb;
   }
   public openCreateActivite() {
     this.submitted = false;
@@ -166,6 +166,13 @@ export class ClubsAdhererComponent implements OnInit {
 
   set clubsMember(value: ClubsMembers) {
     this.service.clubsMember = value;
+  }
+  get clubsMember2(): ClubsMembers {
+    return this.service.clubsMember2;
+  }
+
+  set clubsMember2(value: ClubsMembers) {
+    this.service.clubsMember2 = value;
   }
   get itemsMember(): Array<Member> {
     return this.service.itemsMember;
