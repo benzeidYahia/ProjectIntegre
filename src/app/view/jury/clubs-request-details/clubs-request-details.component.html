@@ -6,21 +6,13 @@
             <input [(ngModel)]="demande.libelle" disabled id="libelle" pInputText type="text"/>
         </div>
         <div class="p-field">
-            <label for="indicationProf">Description</label>
-            <textarea [(ngModel)]="demande.description" disabled id="indicationProf" pInputText
-                      type="text"></textarea>
-        </div>
-        <div class="p-field">
             <label for="contenu">Description</label>
-            <textarea [(ngModel)]="demande.description" disabled id="contenu" pInputText type="text"></textarea>
+            <textarea [(ngModel)]="demande.description" disabled id="contenu" pInputTextarea autoResize="true" type="text"></textarea>
         </div>
         <div class="p-field">
             <label for="questions"> Referent Pedagogique</label>
             <textarea [(ngModel)]="demande.referentPedagogique" disabled id="questions" pInputText type="text"></textarea>
         </div>
-
-
-
         <div class="p-field">
             <label for="cours">FirstName of the Student</label>
             <input [(ngModel)]="demande.member.nom" disabled id="cours" pInputText type="text"/>

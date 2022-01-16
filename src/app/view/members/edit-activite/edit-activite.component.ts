@@ -144,14 +144,13 @@ export class EditActiviteComponent implements OnInit {
     this.submitted = true;
     this.activite.clubs = this.clubsMember.clubs;
     console.log(this.activite.clubs.id);
-
-      this.service.EditActivite().subscribe(data => {
+    this.service.EditActivite().subscribe(data => {
         // tslint:disable-next-line:no-shadowed-variable
         this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'Cours Created',
+          detail: 'Activite Edited',
           life: 3000
         });
       });
@@ -169,14 +168,6 @@ export class EditActiviteComponent implements OnInit {
     return link;
   }
   ngOnInit(): void {
-  }
-  onUpload(event) {
-    for (const file of event.files) {
-      this.uploadedFiles.push(file);
-    }
-
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-    console.log(event);
   }
 
 }

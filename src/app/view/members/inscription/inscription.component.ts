@@ -7,17 +7,28 @@ import {JuryDVE} from '../../../controller/model/jury-dve';
 import {SuperAdminDVE} from '../../../controller/model/super-admin-dve';
 import {LoginService} from '../../../controller/service/login.service';
 import {AppComponent} from '../../../app.component';
-
+interface Nv{
+  name: string;
+}
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
   styleUrls: ['./inscription.component.css']
 })
-export class InscriptionComponent implements OnInit {
 
+export class InscriptionComponent implements OnInit {
+  niveau: Nv[];
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService, private menu: AppComponent,
               private service: MemberServiceService, private serviceLogin: LoginService, private router: Router) {
+    this.niveau = [
+      {name: '1ère année'},
+      {name: '2ème année'},
+      {name: '3ème année'},
+      {name: '4ème année'},
+      {name: '5ème année'},
+      {name: '6ème année'}
+    ];
   }
   get submitted(): boolean {
     return this.service.submitted;

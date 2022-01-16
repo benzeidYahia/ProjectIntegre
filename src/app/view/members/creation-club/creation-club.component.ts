@@ -47,11 +47,11 @@ export class CreationClubComponent implements OnInit {
     this.service.listdemande = value;
   }
   get submitted(): boolean {
-    return this.service.submitted2;
+    return this.service.submitted;
   }
 
   set submitted(value: boolean) {
-    this.service.submitted2 = value;
+    this.service.submitted = value;
   }
   get member(): Member {
     return this.service.member;
@@ -89,6 +89,6 @@ export class CreationClubComponent implements OnInit {
         });
       });
     this.demande = new DemandeCreationClb();
-
+    this.submitted = true;
   }
 }

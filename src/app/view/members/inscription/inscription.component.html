@@ -21,23 +21,49 @@
         <form method="POST" class="appointment-form" id="appointment-form">
             <h2>Registration form</h2>
             <div class="form-group-1">
-                <input type="text" name="prenom" id="Firstname" placeholder="Firstname"
+                <input type="text"  class="btn btn-block btn-outline-info form-control" name="prenom" id="Firstname" placeholder="Firstname"
                        [(ngModel)]="member.prenom"  required/>
-                <input type="text" name="nom" id="Lastname" placeholder="Lastname" [(ngModel)]="member.nom" required/>
-                <input type="email" name="username" id="gmail" placeholder="email" [(ngModel)]="member.login" required
+                <input type="text"  class="btn btn-block btn-outline-info form-control" name="nom" id="Lastname" placeholder="Lastname" [(ngModel)]="member.nom" required/>
+                <input type="email"  class="btn btn-block btn-outline-info form-control" name="username" id="gmail" placeholder="email" [(ngModel)]="member.login" required
                 />
-                <input type="number" name="phone_number" id="phone_number" placeholder="Numero Etudiant" [(ngModel)]="member.numeroEtudiant" required
+                <input type="number"  class="btn btn-block btn-outline-info form-control" name="phone_number" id="phone_number" placeholder="Numero Etudiant" [(ngModel)]="member.numeroEtudiant" required
                 />
-
-                <input type="text" name="phone_number" id="address" placeholder="Fillier" [(ngModel)]="member.fillier" required
-                />
-                <input type="text" name="phone_number" id="city" placeholder="Level" [(ngModel)]="member.niveau" required
-                />
-                <!--                &lt;!&ndash;                <input type="number" name="phone_number" id="city" placeholder="Your city" required [(ngModel)]="etudiant."/>&ndash;&gt;-->
-                <!--                <p-dropdown [options]="locality" [(ngModel)]="etudiant.teacherLocality" optionLabel="name" style="width: 100% !important;-->
-                <!--                             margin-bottom: 2%;" placeholder="">-->
-                <!--                </p-dropdown>-->
-
+                <select id="niveau"  [(ngModel)]="member.niveau" type="text">
+                    <option selected="selected"> 1ère année</option>
+                    <option selected="selected"> 2ème année</option>
+                    <option selected="selected"> 3ème année</option>
+                    <option selected="selected"> 4ème année</option>
+                    <option selected="selected"> 5ème année</option>
+                    <option selected="selected"> 6ème année</option>
+                    <option  disabled selected >Choose your Level</option>
+                </select>
+                <select id="fillier"  [(ngModel)]="member.fillier" type="text">
+                    <option selected="selected"> ARC</option>
+                    <option selected="selected"> ASP</option>
+                    <option selected="selected"> AUTO</option>
+                    <option selected="selected"> CIT</option>
+                    <option selected="selected">COM</option>
+                    <option selected="selected"> DAP</option>
+                    <option selected="selected"> ENG</option>
+                    <option selected="selected"> EPP</option>
+                    <option selected="selected"> FEA</option>
+                    <option selected="selected"> G2I</option>
+                    <option selected="selected"> GI</option>
+                    <option selected="selected"> IBM</option>
+                    <option selected="selected"> IPL</option>
+                    <option selected="selected"> JAL</option>
+                    <option selected="selected"> LDA</option>
+                    <option selected="selected"> LOG</option>
+                    <option selected="selected"> MDEN</option>
+                    <option selected="selected"> MEDINA</option>
+                    <option selected="selected"> MKG</option>
+                    <option selected="selected"> MRH</option>
+                    <option selected="selected"> MTH</option>
+                    <option selected="selected"> PGE</option>
+                    <option selected="selected"> PRI</option>
+                    <option selected="selected"> SCM</option>
+                    <option  disabled selected >Choose your Fillier</option>
+                </select>
 
 
             </div>

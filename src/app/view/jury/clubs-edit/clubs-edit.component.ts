@@ -1,45 +1,43 @@
+/* tslint:disable:no-shadowed-variable */
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {MemberServiceService} from '../../../controller/service/member-service.service';
+import {JuryServiceService} from '../../../controller/service/jury-service.service';
 import {Router} from '@angular/router';
 import {LoginService} from '../../../controller/service/login.service';
 import {Clubs} from '../../../controller/model/clubs';
 import {Member} from '../../../controller/model/member';
+import {JuryDVE} from '../../../controller/model/jury-dve';
 import {ClubsMembers} from '../../../controller/model/clubs-members';
 import {Activite} from '../../../controller/model/activite';
-import {DomSanitizer} from '@angular/platform-browser';
-import {Subscription} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-create-activite',
-  templateUrl: './create-activite.component.html',
-  styleUrls: ['./create-activite.component.scss']
+  selector: 'app-clubs-edit',
+  templateUrl: './clubs-edit.component.html',
+  styleUrls: ['./clubs-edit.component.scss']
 })
-export class CreateActiviteComponent implements OnInit {
-  public fileName: string;
-  uploadedFiles: any ;
-  public profileImage: File;
-  private subscriptions: Subscription[] = [];
-  selectedFile: File;
-  retrievedImage: any;
-  base64Data: any;
-  retrieveResonse: any;
-  message: string;
-  imageName: any;
-  constructor(private messageService: MessageService, public sanitizer: DomSanitizer,
-              private confirmationService: ConfirmationService, private httpClient: HttpClient,
-              private service: MemberServiceService, private router: Router, private user: LoginService) {
+export class ClubsEditComponent implements OnInit {
+
+  constructor(private messageService: MessageService,
+              private confirmationService: ConfirmationService,
+              private service: JuryServiceService, private router: Router, private user: LoginService) {
   }
-    get listClbs(): Array < Clubs > {
+
+  get listClbs(): Array<Clubs> {
     return this.service.listClbs;
   }
 
-    set listClbs(value: Array<Clubs>) {
+  set listClbs(value: Array<Clubs>) {
     this.service.listClbs = value;
   }
-  get itemsClubs(): Array < Clubs > {
-    if (this.service.itemsClubs == null) {
+
+  ngOnInit(): void {
+    this.jury = this.user.jury;
+    if (this.jury.id == null){
+      this.router.navigate(['**']);
+    }
+  }
+  get itemsClubs(): Array<Clubs> {
+    if (this.service.itemsClubs == null){
       this.service.itemsClubs = new Array<Clubs>();
     }
     return this.service.itemsClubs;
@@ -58,11 +56,11 @@ export class CreateActiviteComponent implements OnInit {
   }
 
   get clubs(): Clubs {
-    return this.service.clubs;
+    return this.service.clubs2;
   }
 
   set clubs(value: Clubs) {
-    this.service.clubs = value;
+    this.service.clubs2 = value;
   }
 
   get submitted(): boolean {
@@ -78,6 +76,13 @@ export class CreateActiviteComponent implements OnInit {
 
   set member(value: Member) {
     this.service.member = value;
+  }
+  get jury(): JuryDVE {
+    return this.service.jury;
+  }
+
+  set jury(value: JuryDVE) {
+    this.service.jury = value;
   }
   get itemsClubsMember(): Array<ClubsMembers> {
     return this.service.itemsClubsMember;
@@ -117,6 +122,13 @@ export class CreateActiviteComponent implements OnInit {
   set listMember(value: Array<Member>) {
     this.service.listMember = value;
   }
+  get editClbDialog(): boolean {
+    return this.service.editClbDialog;
+  }
+
+  set editClbDialog(value: boolean) {
+    this.service.editClbDialog = value;
+  }
   get itemsActivite(): Array<Activite> {
     return this.service.itemsActivite;
   }
@@ -131,24 +143,6 @@ export class CreateActiviteComponent implements OnInit {
   set activite(value: Activite) {
     this.service.activite = value;
   }
-  get listActivite(): Array<Activite> {
-    return this.service.listActivite;
-  }
-
-  set listActivite(value: Array<Activite>) {
-    this.service.listActivite = value;
-  }
-  get createDialog(): boolean {
-    return this.service.createDialog;
-  }
-
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
-  }
-  public hideCreateDialog() {
-    this.createDialog = false;
-    this.submitted = false;
-  }
   public urlfind(link: any) {
     if (link !== null) {
       const url = link;
@@ -160,31 +154,32 @@ export class CreateActiviteComponent implements OnInit {
     }
     return link;
   }
-  public saveActivite() {
+  public editClub() {
     this.submitted = true;
-    this.activite.clubs = this.clubsMember.clubs;
-    if (this.activite.image) {
-      console.log(this.activite.image);
-      this.activite.image = this.urlfind(this.activite.image);
+    if (this.clubs.image){
+      this.clubs.image = this.urlfind(this.clubs.image);
     }
-    console.log(this.activite.clubs.id);
-    if (this.activite.id == null) {
-      this.service.SaveActivite().subscribe(data => {
-        // tslint:disable-next-line:no-shadowed-variable
-        this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Activite Saved',
+    this.service.updateClubs().subscribe(data => {
+      this.service.findClubsActif().subscribe( data => this.listClbs = data);
+      this.service.findClubsInActif().subscribe( data => this.itemsClubs = data);
+          // tslint:disable-next-line:no-shadowed-variable
+      this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Profil edited',
+            life: 3000
+          });
+        }, error => this.messageService.add({
+          severity: 'error',
+          summary: 'Warning',
+          detail: 'Error in information',
           life: 3000
-        });
-      });
-      this.createDialog = false;
-      this.activite = new Activite();
-    }
+        })
+    );
+    this.editClbDialog = false;
   }
-  ngOnInit(): void {
+  public hideEditDialog() {
+    this.editClbDialog = false;
+    this.submitted = false;
   }
-
-
 }

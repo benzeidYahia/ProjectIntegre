@@ -26,15 +26,15 @@ export class ClubsDetailsComponent implements OnInit {
   get createDialog(): boolean {
     return this.service.createDialog;
   }
+  set createDialog(value: boolean) {
+    this.service.createDialog = value;
+  }
   get jury(): JuryDVE {
     return this.service.jury;
   }
 
   set jury(value: JuryDVE) {
     this.service.jury = value;
-  }
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
   }
   public openCreateActivite() {
     this.submitted = false;
@@ -117,7 +117,13 @@ export class ClubsDetailsComponent implements OnInit {
   set clubs(value: Clubs) {
     this.service.clubs = value;
   }
+  get clubs2(): Clubs {
+    return this.service.clubs2;
+  }
 
+  set clubs2(value: Clubs) {
+    this.service.clubs2 = value;
+  }
   get submitted(): boolean {
     return this.service.submitted;
   }
@@ -190,6 +196,18 @@ export class ClubsDetailsComponent implements OnInit {
 
   set listActivite(value: Array<Activite>) {
     this.service.listActivite = value;
+  }
+  get editClbDialog(): boolean {
+    return this.service.editClbDialog;
+  }
+
+  set editClbDialog(value: boolean) {
+    this.service.editClbDialog = value;
+  }
+  public openEditClub(memb: Clubs) {
+    this.submitted = false;
+    this.editClbDialog = true;
+    this.clubs2 = memb;
   }
   ngOnInit(): void {
     if (this.jury.id == null){

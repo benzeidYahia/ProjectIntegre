@@ -205,7 +205,7 @@ sortOptions: SelectItem[];
     this.submitted = true;
       this.clubsMember.clubs = club;
       this.clubsMember.member = this.user.member;
-      this.clubsMember.status = 'membre';
+      this.clubsMember.status = 'Membre';
       console.log( this.clubsMember.status);
       this.clubsMember.dateAdherence = new Date();
       this.itemsClubs = new Array<Clubs>();
@@ -227,15 +227,6 @@ sortOptions: SelectItem[];
         });
       });
   }
-  private initCol() {
-    this.cols = [
-      {field: 'id', header: 'Id'},
-      {field: 'libelle', header: 'Libelle'},
-      {field: 'categorie', header: 'Code'},
-      {field: 'status', header: 'Status'}
-    ];
-  }
-
 
   get itemsActivite(): Array<Activite> {
     return this.service.itemsActivite;

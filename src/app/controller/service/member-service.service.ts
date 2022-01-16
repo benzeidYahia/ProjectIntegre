@@ -21,6 +21,7 @@ export class MemberServiceService {
   private _itemsMember: Array<Member>;
   private _listMember: Array<Member>;
   private _member: Member;
+  private _member2: Member;
   private _memberStatus: Member;
   private _itemsTresor: Array<Tresorerie>;
   private _listTresor: Array<Tresorerie>;
@@ -41,6 +42,7 @@ export class MemberServiceService {
   private _createTresorDialog: boolean;
   private _editDialog: boolean;
   private _editStatusDialog: boolean;
+  private _editClbDialog: boolean;
   private _editTresorerieDialog: boolean;
   private _editProfil: boolean;
   private _viewDialog: boolean;
@@ -51,6 +53,25 @@ export class MemberServiceService {
   private _itemsdemande: Array<DemandeCreationClb>;
   private _listdemande: Array<DemandeCreationClb>;
 
+
+  get member2(): Member {
+    if (this._member2 == null){
+      this._member2 = new Member();
+    }
+    return this._member2;
+  }
+
+  set member2(value: Member) {
+    this._member2 = value;
+  }
+
+  get editClbDialog(): boolean {
+    return this._editClbDialog;
+  }
+
+  set editClbDialog(value: boolean) {
+    this._editClbDialog = value;
+  }
 
   get editProfil(): boolean {
     return this._editProfil;
@@ -389,6 +410,9 @@ export class MemberServiceService {
   public EditProfile(): Observable<number> {
     return this.http.put<number>(this.memberUrl + 'member/', this.member);
   }
+  public EditClub(): Observable<number> {
+    return this.http.put<number>(this.memberUrl + 'clubs/', this.clubs);
+  }
   public EditStatus(): Observable<number> {
     return this.http.put<number>(this.memberUrl + 'clubsmembers/', this.clubsMember2);
   }
@@ -435,6 +459,10 @@ export class MemberServiceService {
   }
   public deleteClubsMemberIndexById(id: number) {
     this.itemsClubsMember.splice(this.findClubsMemberIndexById(id), 1);
+  }
+  public findMember(username: string, password: string): Observable<Member>
+  {
+    return this.http.get<Member>('http://localhost:8036/member/member/login/' + username + '/password/' + password);
   }
   public findClubsMemberIndexById(id: number): number {
     let index = -1;

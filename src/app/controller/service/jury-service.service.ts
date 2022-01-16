@@ -31,6 +31,7 @@ export class JuryServiceService {
   private _listClbs: Array<Clubs>;
   private _listClubs: Array<Clubs>;
   private _clubs: Clubs;
+  private _clubs2: Clubs;
 
   private _activite: Activite;
   private _itemsActivite: Array<Activite>;
@@ -40,6 +41,7 @@ export class JuryServiceService {
   private _editDialog: boolean;
   private _editTresorerieDialog: boolean;
   private _viewDialog: boolean;
+  private _editClbDialog: boolean;
   private _submitted: boolean;
   private _submitted2: boolean;
   private _submittedTresorerie: boolean;
@@ -48,7 +50,21 @@ export class JuryServiceService {
   private _itemsdemande: Array<DemandeCreationClb>;
   private _listdemande: Array<DemandeCreationClb>;
 
+  get clubs2(): Clubs {
+    return this._clubs2;
+  }
 
+  set clubs2(value: Clubs) {
+    this._clubs2 = value;
+  }
+
+  get editClbDialog(): boolean {
+    return this._editClbDialog;
+  }
+
+  set editClbDialog(value: boolean) {
+    this._editClbDialog = value;
+  }
   get jury(): JuryDVE {
     if (this._jury == null){
       this._jury =  new JuryDVE();
@@ -360,6 +376,9 @@ export class JuryServiceService {
   }
   public create(): Observable<Member> {
     return this.http.post<Member>(this.juryUrl + 'member/', this.member);
+  }
+  public EditClub(): Observable<number> {
+    return this.http.put<number>(this.juryUrl + 'clubs/', this.clubs);
   }
   public findActivitieBudget(id: number): Observable<Array<Tresorerie>> {
     return this.http.get<Array<Tresorerie>>( 'http://localhost:8036/jury/tresorerie/activite/id/' + id  );

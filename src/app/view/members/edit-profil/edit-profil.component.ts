@@ -32,14 +32,26 @@ export class EditProfilComponent implements OnInit {
   ngOnInit(): void {
   }
   get member(): Member {
-    return this.service.member;
+    return this.service.member2;
   }
 
   set member(value: Member) {
+    this.service.member2 = value;
+  }
+  get members(): Member {
+    return this.service.member;
+  }
+
+  set members(value: Member) {
     this.service.member = value;
   }
 
   public hideEditDialog() {
+    this.service.findMember(this.member.login, this.member.password).subscribe(
+        // tslint:disable-next-line:no-shadowed-variable
+        data => {
+          this.members = data;
+        });
     this.editProfil = false;
     this.submitted = false;
   }
@@ -56,7 +68,15 @@ export class EditProfilComponent implements OnInit {
   }
   public editProfile() {
     this.submitted = true;
+    if (this.member.image){
+      this.member.image = this.urlfind(this.member.image);
+    }
     this.service.EditProfile().subscribe(data => {
+      this.service.findMember(this.member.login, this.member.password).subscribe(
+          // tslint:disable-next-line:no-shadowed-variable
+          data => {
+            this.members = data;
+          });
       // tslint:disable-next-line:no-shadowed-variable
       this.messageService.add({
         severity: 'success',

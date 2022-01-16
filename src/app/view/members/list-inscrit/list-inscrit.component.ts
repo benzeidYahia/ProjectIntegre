@@ -133,7 +133,7 @@ export class ListInscritComponent implements OnInit {
       this.messageService.add({
         severity: 'success',
         summary: 'Successful',
-        detail: 'Clubs added',
+        detail: 'Membre Added',
         life: 3000
       });
     });

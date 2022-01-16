@@ -3,7 +3,8 @@
 
             <div class="p-col-5" >
                     <img style="width: 100%" src="{{this.clubsMember.clubs.image}}" alt=""/>
-
+                <button (click)="openEditClub(clubsMember)" [style.visibility]=" clubsMember.status == 'Président' || 'Vice-President'? 'visible': 'hidden'" class="p-button-warning p-mr-2 p-mb-2" style="float: right" icon="pi pi-plus" label="Edit" pButton
+                        pRipple ></button>
             </div>
 
             <div class="p-col-7">
@@ -14,7 +15,7 @@
                     <h3 style="float: inside"><b style="color: black">Categorie :</b><b style="color: #6c9aaa">{{this.clubsMember.clubs.categorie}}</b></h3>
 
                     <p>{{this.clubsMember.clubs.description}}</p>
-                    <button (click)="inscrit()" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" style="float: right" icon="pi pi-plus" label="List Inscrit" pButton
+                    <button (click)="inscrit()" [style.visibility]=" clubsMember.status == 'Président' || 'Vice-President'? 'visible': 'hidden'" class="p-button-info p-mr-2 p-mb-2" style="float: right" icon="pi pi-plus" label="List Inscrit" pButton
                             pRipple ></button>
 
                 </div>
@@ -42,9 +43,9 @@
                             <div class="product-name" ><b style="color: black">Nom:</b><b style="color: #6c9aaa"> {{memberclb.member.nom}}</b> <br><b style="color: black"> Prenom: </b><b style="color: #6c9aaa">{{memberclb.member.prenom}}</b>
                                </div>
                             <div class="product-description"> <b style="color: black">Status: </b><b style="color: #6c9aaa">{{memberclb.status}}</b> <br></div>
-                            <button (click)="delete(memberclb)" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" class="p-button-warning p-mr-2 p-mb-2" icon="pi pi-trash" label="Delete Member" pButton
+                            <button (click)="delete(memberclb)" [style.visibility]=" clubsMember.status == 'Président' || 'Vice-President'? 'visible': 'hidden'" class="p-button-danger p-mr-2 p-mb-2" icon="pi pi-trash" label="Delete Member" pButton
                                     pRipple ></button>
-                            <button (click)="openEditStatus(memberclb)" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Edit Status" pButton
+                            <button (click)="openEditStatus(memberclb)" [style.visibility]=" clubsMember.status == 'Président' || 'Vice-President' ? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Edit Status" pButton
                                     pRipple ></button>
                         </div>
                     </div>
@@ -62,7 +63,7 @@
                 <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
 
                     <h2><b style="color: #4e7988">Clubs Activities</b></h2>
-                    <button (click)="openCreateActivite()" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="New Activite" pButton
+                    <button (click)="openCreateActivite()" [style.visibility]=" clubsMember.status == 'Président' || 'Vice-President' ? 'visible': 'hidden'" class="p-button-info p-mr-2 p-mb-2" icon="pi pi-plus" label="New Activite" pButton
                             pRipple ></button>
                 </div>
             </ng-template>
@@ -82,7 +83,7 @@
                             </div>
                             </div>
                     <div class="p-col-3" style="margin-top: 2%">
-                        <button (click)="openEditActivite(activite)" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" style="float: left" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Edit Activite" pButton
+                        <button (click)="openEditActivite(activite)" [style.visibility]=" clubsMember.status == 'Président'|| 'Vice-President'? 'visible': 'hidden'" style="float: left" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Edit Activite" pButton
                                           pRipple ></button>
                         <button (click)="openTresoreriActivite(activite)" [style.visibility]=" clubsMember.status == 'Tresor'? 'visible': 'hidden'" style="float: left" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="Tresorerie" pButton
                                 pRipple ></button>
@@ -94,5 +95,6 @@
 <app-create-activite></app-create-activite>
     <app-edit-activite></app-edit-activite>
     <app-edit-status></app-edit-status>
+    <app-edit-clubs></app-edit-clubs>
     <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 </div>

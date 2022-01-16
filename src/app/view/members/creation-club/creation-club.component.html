@@ -5,31 +5,26 @@
     <h1 style="text-align: center"><b style="color: #0a3e41">Request Creating Club</b></h1>
     <div class="p-field ">
         <h5 for="libelle">Clubs Name</h5>
-        <input [(ngModel)]="demande.libelle" autofocus id="libelle" pInputText required type="text"/>
-        <small *ngIf="submitted && !demande.libelle" class="p-invalid">libelle is required.</small>
+        <input [(ngModel)]="demande.libelle" autofocus id="libelle" pInputText  type="text"/>
     </div>
     <div class="p-field ">
         <h5 for="numeroOrder">Categorie </h5>
-        <input [(ngModel)]="demande.categorie" autofocus id="numeroOrder" pInputText required type="text"/>
-        <small *ngIf="submitted && !demande.categorie" class="p-invalid">categorie is required.</small>
+        <input [(ngModel)]="demande.categorie" autofocus id="numeroOrder" pInputText  type="text"/>
     </div>
 
 
 
     <div class="p-field ">
         <h5 for="description">Description</h5>
-        <textarea [(ngModel)]="demande.description" autofocus id="description" pInputText required type="text"></textarea>
-        <small *ngIf="submitted && !demande.description" class="p-invalid">description is required.</small>
+        <textarea [(ngModel)]="demande.description" autofocus id="description" pInputTextarea autoResize="true"   type="text"></textarea>
     </div>
     <div class="p-field ">
         <h5 for="name">Name ReferentPedagogique </h5>
-        <input [(ngModel)]="demande.referentPedagogique" autofocus id="name" pInputText required type="text"/>
-        <small *ngIf="submitted && !demande.referentPedagogique" class="p-invalid">referent is required.</small>
+        <input [(ngModel)]="demande.referentPedagogique" autofocus id="name" pInputText  type="text"/>
     </div>
     <div class="p-field ">
-
         <h5 for="urlImage">Image (Link From drive)</h5>
-        <input [(ngModel)]="demande.image" autofocus id="urlImage" pInputText required type="text"/>
+        <input [(ngModel)]="demande.image" autofocus id="urlImage" pInputText  type="text"/>
         <img *ngIf="demande.image" [src]="urlfind(demande.image) " style="width: 100%;" id="logo">
 
         <!-- <p-fileUpload name="demo[]" url="src/assets/layout/images/" (onUpload)="onUpload($event)"

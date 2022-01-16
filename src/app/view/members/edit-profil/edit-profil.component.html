@@ -1,30 +1,68 @@
-<p-dialog [(visible)]="editProfil" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '550px'}" header="Course Create"
+<p-dialog [(visible)]="editProfil" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '800px'}" header=" Edite Profil"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 
         <div class="p-field">
             <label for="libelle">FirstName</label>
-            <input [(ngModel)]="member.nom" autofocus id="libelle" pInputText required type="text"/>
+            <input [(ngModel)]="member.nom" autofocus id="libelle"  class="btn btn-block btn-outline-info form-control" pInputText required type="text"/>
         </div>
         <div class="p-field">
             <label for="description">LastName</label>
-            <input [(ngModel)]="member.prenom" autofocus id="description" pInputText required type="text"/>
+            <input [(ngModel)]="member.prenom" autofocus id="description"  class="btn btn-block btn-outline-info form-control" pInputText required type="text"/>
         </div>
         <div class="p-field">
             <label for="numeroOrder">Code Etudiant </label>
-            <input [(ngModel)]="member.numeroEtudiant" autofocus id="numeroOrder" pInputText required type="number"/>
+            <input [(ngModel)]="member.numeroEtudiant" autofocus id="numeroOrder"  class="btn btn-block btn-outline-info form-control" pInputText required type="number"/>
         </div>
         <div class="p-field">
             <label for="Level">Level</label>
-            <input [(ngModel)]="member.niveau" autofocus id="Level" pInputText required type="text"/>
+            <select id="Level" [(ngModel)]="member.niveau" class="btn btn-block btn-outline-info form-control"
+                    name="Level" pInputText
+                    type="text">
+                <option selected="selected"> 1ère année</option>
+                <option selected="selected"> 2ème année</option>
+                <option selected="selected"> 3ème année</option>
+                <option selected="selected"> 4ème année</option>
+                <option selected="selected"> 5ème année</option>
+                <option selected="selected"> 6ème année</option>
+
+            </select>
         </div>
         <div class="p-field">
-            <label for="Fillier">Fillier </label>
-            <input [(ngModel)]="member.fillier" autofocus id="Fillier" pInputText required type="number"/>
+            <label for="fillier">Fillier </label>
+            <select id="fillier" [(ngModel)]="member.fillier"  class="btn btn-block btn-outline-info form-control"
+                    name="Fillier" pInputText
+                    type="text">
+                <option selected="selected"> ARC</option>
+                <option selected="selected"> ASP</option>
+                <option selected="selected"> AUTO</option>
+                <option selected="selected"> CIT</option>
+                <option selected="selected">COM</option>
+                <option selected="selected"> DAP</option>
+                <option selected="selected"> ENG</option>
+                <option selected="selected"> EPP</option>
+                <option selected="selected"> FEA</option>
+                <option selected="selected"> G2I</option>
+                <option selected="selected"> GI</option>
+                <option selected="selected"> IBM</option>
+                <option selected="selected"> IPL</option>
+                <option selected="selected"> JAL</option>
+                <option selected="selected"> LDA</option>
+                <option selected="selected"> LOG</option>
+                <option selected="selected"> MDEN</option>
+                <option selected="selected"> MEDINA</option>
+                <option selected="selected"> MKG</option>
+                <option selected="selected"> MRH</option>
+                <option selected="selected"> MTH</option>
+                <option selected="selected"> PGE</option>
+                <option selected="selected"> PRI</option>
+                <option selected="selected"> SCM</option>
+
+            </select>
         </div>
         <div class="p-field">
             <label for="urlImage">Image (Link From drive)</label>
-            <input [(ngModel)]="member.image" autofocus id="urlImage" pInputText required type="text"/>
+            <input [(ngModel)]="member.image" autofocus id="urlImage" class="btn btn-block btn-outline-info form-control" pInputText required type="text"/>
             <img *ngIf="member.image" [src]="urlfind(member.image) " style="width: 100%;" id="logo">
 
         </div>

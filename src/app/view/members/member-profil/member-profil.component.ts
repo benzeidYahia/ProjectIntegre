@@ -31,6 +31,13 @@ export class MemberProfilComponent implements OnInit {
   set member(value: Member) {
     this.service.member = value;
   }
+  get member2(): Member {
+    return this.service.member2;
+  }
+
+  set member2(value: Member) {
+    this.service.member2 = value;
+  }
   public edit() {
     console.log(this.member);
     this.submitted = true;
@@ -61,7 +68,7 @@ export class MemberProfilComponent implements OnInit {
   public openEditProfil(memb: Member) {
     this.submitted = false;
     this.editProfil = true;
-    this.member = memb;
+    this.member2 = memb;
   }
   get editProfil(): boolean {
     return this.service.editProfil;

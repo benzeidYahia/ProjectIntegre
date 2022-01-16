@@ -33,14 +33,25 @@ export class ClubsAdhererComponent implements OnInit {
   get editStatusDialog(): boolean {
     return this.service.editStatusDialog;
   }
-
   set editStatusDialog(value: boolean) {
     this.service.editStatusDialog = value;
+  }
+  get editClbDialog(): boolean {
+    return this.service.editClbDialog;
+  }
+
+  set editClbDialog(value: boolean) {
+    this.service.editClbDialog = value;
   }
   public openEditStatus(memb: ClubsMembers) {
     this.submitted = false;
     this.editStatusDialog = true;
     this.clubsMember2 = memb;
+  }
+  public openEditClub(memb: ClubsMembers) {
+    this.submitted = false;
+    this.editClbDialog = true;
+    this.clubs = memb.clubs;
   }
   public openCreateActivite() {
     this.submitted = false;
