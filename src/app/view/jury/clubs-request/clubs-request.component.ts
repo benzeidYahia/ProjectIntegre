@@ -72,6 +72,7 @@ export class ClubsRequestComponent implements OnInit {
         life: 3000
       });
     });
+    this.service.findRequest().subscribe(data => this.itemsdemande = data);
 
   }
   public updateNewClub(){
