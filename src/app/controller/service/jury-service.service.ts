@@ -419,7 +419,7 @@ export class JuryServiceService {
   }
   public findClubsActivitie(): Observable<Array<Activite>> {
     console.log(this.clubsMember.clubs.libelle);
-    return this.http.get<Array<Activite>>('http://localhost:8036/jury/activite/clubs/libelle/' + this.clubsMember.clubs.libelle );
+    return this.http.get<Array<Activite>>('http://localhost:8036/jury/activite/activite/libelle/' + this.clubsMember.clubs.libelle );
   }
   public findClubsMembers(): Observable<Array<ClubsMembers>> {
     console.log(this.clubsMember.clubs.libelle);

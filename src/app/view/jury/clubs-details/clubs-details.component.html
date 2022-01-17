@@ -2,7 +2,7 @@
     <div class="container emp-profile p-card p-grid " >
 
         <div class="p-col-5" >
-            <img style="width: 100%" src="{{this.clubs.image}}" alt=""/>
+            <img style="width: 100%; height: 400px;" src="{{this.clubs.image}}" alt=""/>
             <button (click)="openEditClub(clubs)" class="p-button-warning p-mr-2 p-mb-2" style="float: right" icon="pi pi-plus" label="Edit" pButton
                     pRipple ></button>
         </div>
@@ -34,10 +34,10 @@
                 <div class="p-col">
 
                     <div class="product-list-item" >
-                        <img *ngIf="memberclb.member.image" [src]="memberclb.member.image "  >
-                        <img *ngIf="!memberclb.member.image "
+                        <img *ngIf="memberclb.member.image" style="height: 150px" [src]="memberclb.member.image "  >
+                        <img *ngIf="!memberclb.member.image " style="height: 150px"
                              src="../../../../assets/layout/images/notfound.jpg" >
-                        <div class="product-list-detail" >
+                        <div class="product-list-detail" style="margin-top: 7%" >
                             <div class="product-name" ><b style="color: black">Nom:</b><b style="color: #6c9aaa"> {{memberclb.member.nom}}</b> <br><b style="color: black"> Prenom: </b><b style="color: #6c9aaa">{{memberclb.member.prenom}}</b>
                             </div>
                             <div class="product-description"> <b style="color: black">Status: </b><b style="color: #6c9aaa">{{memberclb.status}}</b> <br></div>

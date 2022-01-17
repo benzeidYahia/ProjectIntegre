@@ -143,6 +143,9 @@ export class EditActiviteComponent implements OnInit {
   public editActivite() {
     this.submitted = true;
     this.activite.clubs = this.clubsMember.clubs;
+    if (this.activite.image){
+      this.activite.image = this.urlfind(this.activite.image);
+    }
     console.log(this.activite.clubs.id);
     this.service.EditActivite().subscribe(data => {
         // tslint:disable-next-line:no-shadowed-variable

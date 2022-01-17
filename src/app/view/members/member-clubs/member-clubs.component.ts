@@ -46,18 +46,21 @@ sortOptions: SelectItem[];
     if (this.member.id == null){
       this.router.navigate(['**']);
     }
-   // this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
+    this.ids = new Array<number>();
+    // this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
     this.service.findClubsMember(this.member.id).subscribe(data => {
       this.itemsClubsMember = data;
       this.service.findClubIds().subscribe( data => {
         this.ids = data;
         console.log(this.ids);
         // tslint:disable-next-line:triple-equals
-        if (this.ids.length == 0){
+        if (this.ids.values() == null){
           this.service.findAllClubsNotIn([0]).subscribe(data => this.items2ClubsMember = data);
+          console.log(this.items2ClubsMember);
         }else{
-        this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
-      }
+          this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+        }
+        console.log(this.items2ClubsMember);
       });
      });
 

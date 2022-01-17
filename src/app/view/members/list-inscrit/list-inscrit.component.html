@@ -31,7 +31,7 @@
                                         <div class="product-description"> <b style="color: black">Fillier: </b><b style="color: #6c9aaa">{{memberclb.member.fillier}}</b> <br>
                                             <b style="color: black">Niveau: </b><b style="color: #6c9aaa">{{memberclb.member.niveau}}</b> <br>
                                         </div>
-                                        <button (click)="accepte(memberclb)" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="accepte" pButton
+                                        <button (click)="accepte(memberclb)" [style.visibility]=" clubsMember.status == 'Président'? 'visible': 'hidden' || clubsMember.status == 'Vice-President'? 'visible': 'hidden'" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="accepte" pButton
                                                 pRipple ></button>
                                     </div>
                                 </div>
