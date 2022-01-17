@@ -49,7 +49,7 @@ a:focus, a:active {
     -ms-transition: all 300ms ease 0s;
 }
 
-input, select, textarea {
+input, textarea {
     outline: none;
     appearance: unset !important;
     -moz-appearance: unset !important;
@@ -67,7 +67,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,  textarea:focus {
     outline: none;
     box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -177,56 +177,6 @@ input:focus, select:focus {
     border-bottom: 2px solid #4966b1;
 }
 
-input[type=checkbox]:not(old) {
-    width: 2em;
-    margin: 0;
-    padding: 0;
-    font-size: 1em;
-    display: none;
-}
-
-input[type=checkbox]:not(old) + label {
-    display: inline-block;
-    margin-top: 7px;
-    margin-bottom: 25px;
-}
-
-input[type=checkbox]:not(old) + label > span {
-    display: inline-block;
-    width: 13px;
-    height: 13px;
-    margin-right: 15px;
-    margin-bottom: 3px;
-    border: 1px solid #ebebeb;
-    background: white;
-    background-image: -moz-linear-gradient(white, white);
-    background-image: -ms-linear-gradient(white, white);
-    background-image: -o-linear-gradient(white, white);
-    background-image: -webkit-linear-gradient(white, white);
-    background-image: linear-gradient(white, white);
-    vertical-align: bottom;
-}
-
-input[type=checkbox]:not(old):checked + label > span {
-    background-image: -moz-linear-gradient(white, white);
-    background-image: -ms-linear-gradient(white, white);
-    background-image: -o-linear-gradient(white, white);
-    background-image: -webkit-linear-gradient(white, white);
-    background-image: linear-gradient(white, white);
-}
-
-input[type=checkbox]:not(old):checked + label > span:before {
-    content: '\f26b';
-    display: block;
-    color: #222;
-    font-size: 11px;
-    line-height: 1.2;
-    text-align: center;
-    font-family: Georgia, Serif;
-    font-weight: bold;
-    font-size: larger;
-}
-
 .label-agree-term {
     color: #999;
 }
@@ -324,12 +274,7 @@ li.init:after {
     margin-bottom: 20px;
 }
 
-.select-list {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 25px;
-}
+
 
 .list-item {
     position: absolute;
@@ -363,14 +308,3 @@ li.init:after {
     }
 }
 
-/*# sourceMappingURL=style.css.map */
-
-select {
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-    font-family: Georgia, Serif;
-    color: #6c757e;
-    cursor: pointer;
-    padding-top: 0;
-}

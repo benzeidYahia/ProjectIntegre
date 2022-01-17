@@ -7,6 +7,7 @@ import {JuryDVE} from '../../../controller/model/jury-dve';
 import {SuperAdminDVE} from '../../../controller/model/super-admin-dve';
 import {LoginService} from '../../../controller/service/login.service';
 import {AppComponent} from '../../../app.component';
+import {Types} from '../../../controller/model/types';
 interface Nv{
   name: string;
 }
@@ -18,10 +19,11 @@ interface Nv{
 
 export class InscriptionComponent implements OnInit {
   niveau: Nv[];
+  types: Types[];
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService, private menu: AppComponent,
               private service: MemberServiceService, private serviceLogin: LoginService, private router: Router) {
-    this.niveau = [
+    this.types = [
       {name: '1ère année'},
       {name: '2ème année'},
       {name: '3ème année'},
@@ -44,9 +46,23 @@ export class InscriptionComponent implements OnInit {
   set member(value: Member) {
     this.service.member = value;
   }
+  public urlfind(link: any) {
+    if (link !== null) {
+      const url = link;
+      const found = url.match(/d\/([A-Za-z0-9\-\_]+)/);
+      if (found !== null) {
+        console.log('hadaaaaa found== ' + found[1]);
+        return 'https://drive.google.com/uc?export=view&id=' + found[1];
+      }
+    }
+    return link;
+  }
   public save() {
     console.log(this.member);
     this.submitted = true;
+    if (this.member.image){
+      this.member.image = this.urlfind(this.member.image);
+    }
     this.service.create().subscribe(data => {
       this.messageService.add({
         severity: 'success',

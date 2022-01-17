@@ -52,8 +52,12 @@ sortOptions: SelectItem[];
       this.service.findClubIds().subscribe( data => {
         this.ids = data;
         console.log(this.ids);
+        // tslint:disable-next-line:triple-equals
+        if (this.ids.length == 0){
+          this.service.findAllClubsNotIn([0]).subscribe(data => this.items2ClubsMember = data);
+        }else{
         this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
-
+      }
       });
      });
 
