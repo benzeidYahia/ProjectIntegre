@@ -31,43 +31,17 @@
 
                 <input type="text"  class="btn btn-block btn-outline-info form-control" name="Image" id="photo" placeholder="Image (Link from Google Drive)" [(ngModel)]="member.image" required/>
                 <div class="p-field">
-            <select required name="role" id="roles"  [(ngModel)]="member.niveau" placeholder="--Please choose your level--"
-                    pInputText >
-                <option disabled selected>--Please choose your level--</option>
-                <option selected="selected"> 1ère année</option>
-                <option selected="selected"> 2ème année</option>
-                <option selected="selected"> 3ème année</option>
-                <option selected="selected"> 4ème année</option>
-                <option selected="selected"> 5ème année</option>
-                <option selected="selected"> 6ème année</option>
-            </select>
-            <select required name="role"  id="role"  pInputText  [(ngModel)]="member.fillier" placeholder="--Please choose your fillier--">
-                <option  selected>--Please choose your fillier--</option>
-                <option selected="selected"> ARC</option>
-                <option selected="selected"> ASP</option>
-                <option selected="selected"> AUTO</option>
-                <option selected="selected"> CIT</option>
-                <option selected="selected">COM</option>
-                <option selected="selected"> DAP</option>
-                <option selected="selected"> ENG</option>
-                <option selected="selected"> EPP</option>
-                <option selected="selected"> FEA</option>
-                <option selected="selected"> G2I</option>
-                <option selected="selected"> GI</option>
-                <option selected="selected"> IBM</option>
-                <option selected="selected"> IPL</option>
-                <option selected="selected"> JAL</option>
-                <option selected="selected"> LDA</option>
-                <option selected="selected"> LOG</option>
-                <option selected="selected"> MDEN</option>
-                <option selected="selected"> MEDINA</option>
-                <option selected="selected"> MKG</option>
-                <option selected="selected"> MRH</option>
-                <option selected="selected"> MTH</option>
-                <option selected="selected"> PGE</option>
-                <option selected="selected"> PRI</option>
-                <option selected="selected"> SCM</option>
-            </select></div>
+                    <p-dropdown [(ngModel)]="member.niveau" [options]="types" inputId="type" (onChange)="storeValue($event)" [ngModelOptions]="{standalone: true}"
+                                 autoWidth="false" optionLabel="name" optionValue="name" placeholder="--Please choose level--" [style]="{'width': '100%'}" ></p-dropdown>
+                    <small *ngIf="submitted && !member.niveau" class="p-invalid">level is required.</small>
+
+                </div>
+                <div class="p-field">
+                    <p-dropdown [(ngModel)]="member.fillier" [options]="fillier" inputId="type" (onChange)="storeValueFillier($event)" [ngModelOptions]="{standalone: true}"
+                                autoWidth="false" optionLabel="name" optionValue="name" placeholder="--Please choose Faculty--" [style]="{'width': '100%'}" ></p-dropdown>
+                    <small *ngIf="submitted && !member.fillier" class="p-invalid">Faculty is required.</small>
+
+                </div>
             </div>
             <div class="form-submit">
                 <button type="button" name="submit" style="background-color: #4e7988; float: right" id="submit"
@@ -81,5 +55,3 @@
 
 </body>
 </html>
-<script>
-$('.picker').selectpicker({noneSelectedText: 'Insert Placeholder text'});  </script>

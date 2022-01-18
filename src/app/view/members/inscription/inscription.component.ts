@@ -3,14 +3,11 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
 import {MemberServiceService} from '../../../controller/service/member-service.service';
 import {Member} from '../../../controller/model/member';
-import {JuryDVE} from '../../../controller/model/jury-dve';
-import {SuperAdminDVE} from '../../../controller/model/super-admin-dve';
 import {LoginService} from '../../../controller/service/login.service';
 import {AppComponent} from '../../../app.component';
 import {Types} from '../../../controller/model/types';
-interface Nv{
-  name: string;
-}
+import {Fillier} from '../../../controller/model/fillier';
+
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
@@ -18,8 +15,9 @@ interface Nv{
 })
 
 export class InscriptionComponent implements OnInit {
-  niveau: Nv[];
   types: Types[];
+  fillier: Fillier[];
+  listMembre: Array<Member>;
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService, private menu: AppComponent,
               private service: MemberServiceService, private serviceLogin: LoginService, private router: Router) {
@@ -30,6 +28,32 @@ export class InscriptionComponent implements OnInit {
       {name: '4ème année'},
       {name: '5ème année'},
       {name: '6ème année'}
+    ];
+    this.fillier = [
+      {name: 'ARC'},
+      {name: 'ASP'},
+      {name: 'AUTO'},
+      {name: 'CIT'},
+      {name: 'COM'},
+      {name: 'DAP'},
+      {name: 'ENG'},
+      {name: 'EPP'},
+      {name: 'FEA'},
+      {name: 'G2I'},
+      {name: 'GI'},
+      {name: 'IBM'},
+      {name: 'IPL'},
+      {name: 'JAL'},
+      {name: 'LDA'},
+      {name: 'LOG'},
+      {name: 'MDEN'},
+      {name: 'MEDINA'},
+      {name: 'MKG'},
+      {name: 'MRH'},
+      {name: 'MTH'},
+      {name: 'PGE'},
+      {name: 'PRI'},
+      {name: 'SCM'}
     ];
   }
   get submitted(): boolean {
@@ -45,6 +69,14 @@ export class InscriptionComponent implements OnInit {
 
   set member(value: Member) {
     this.service.member = value;
+  }
+  storeValue(event) {
+    console.log(event);
+    this.member.niveau = event.originalEvent.srcElement.innerText;
+  }
+  storeValueFillier(event) {
+    console.log(event);
+    this.member.fillier = event.originalEvent.srcElement.innerText;
   }
   public urlfind(link: any) {
     if (link !== null) {
