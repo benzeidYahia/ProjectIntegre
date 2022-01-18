@@ -413,6 +413,10 @@ export class JuryServiceService {
   public findAllClubs(): Observable<Array<Clubs>> {
     return this.http.get<Array<Clubs>>(this.juryUrl + 'clubs/' );
   }
+  public findClubsNotIn(id: Array<number>): Observable<Array<Clubs>> {
+    console.log(id.reverse());
+    return this.http.post<Array<Clubs>>('http://localhost:8036/member/clubs/clubs/status/actif', id );
+  }
   public findAllClubsNotIn(id: number[]): Observable<Array<Clubs>> {
     console.log(id.reverse());
     return this.http.post<Array<Clubs>>('http://localhost:8036/jury/clubs/clubs/', id );

@@ -63,7 +63,7 @@
             <div class="p-col-12">
                 <div class="card">
 
-                    <p-dataView #dv [paginator]="true" [rows]="3" [value]="items2ClubsMember" filterBy="name"
+                    <p-dataView #dv [paginator]="true" [rows]="3" [value]="itemsClubs" filterBy="name"
                                 [sortField]="sortField" [sortOrder]="sortOrder"   layout="list">
                         <ng-template pTemplate="header">
                             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
@@ -76,31 +76,31 @@
                         </ng-template>
 
 
-                        <ng-template let-clubsM pTemplate="listItem">
+                        <ng-template let-clubs pTemplate="listItem">
                             <div class="p-col-12">
                                 <div class="product-list-item">
-                                    <img *ngIf="clubsM.clubs.image" [src]="clubsM.clubs.image ">
-                                    <img *ngIf="!clubsM.clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
+                                    <img *ngIf="clubs.image" [src]="clubs.image ">
+                                    <img *ngIf="!clubs.image"  src="../../../../assets/layout/images/notfound.jpg">
                                     <div class="product-list-detail" >
-                                        <div class="product-name">{{clubsM.clubs.libelle}}</div>
-                                        <div class="product-description">{{clubsM.clubs.description}}<br>
-                                        <button (click)="add(clubsM.clubs)" class="p-button-info" icon="pi" label="Integrate" pButton
+                                        <div class="product-name">{{clubs.libelle}}</div>
+                                        <div class="product-description">{{clubs.description}}<br>
+                                        <button (click)="add(clubs)" class="p-button-info" icon="pi" label="Integrate" pButton
                                                 pRipple></button></div>
                                     </div>
                                 </div>
                             </div>
 
                         </ng-template>
-                        <ng-template let-clubsM pTemplate="gridItem">
+                        <ng-template let-clubs pTemplate="gridItem">
                             <div class="p-col-12 p-md-4">
                                 <div class="product-grid-item card">
                                     <div class="product-grid-item-content" style="cursor: pointer">
-                                        <div class="product-name">{{clubsM.clubs.libelle}}</div>
-                                        <img *ngIf="clubsM.clubs.image" [src]="clubsM.clubs.image " >
-                                        <img *ngIf="!clubsM.clubs.image "
+                                        <div class="product-name">{{clubs.libelle}}</div>
+                                        <img *ngIf="clubs.image" [src]="clubs.image " >
+                                        <img *ngIf="!clubs.image "
                                              src="../../../../assets/layout/images/notfound.jpg" >
-                                        <div class="product-description">{{clubsM.clubs.description}}<br>
-                                        <button (click)="add(clubsM.clubs)" class="p-button-info" icon="pi" label="Integrate" pButton
+                                        <div class="product-description">{{clubs.description}}<br>
+                                        <button (click)="add(clubs)" class="p-button-info" icon="pi" label="Integrate" pButton
                                         pRipple></button></div>
                                     </div>
 

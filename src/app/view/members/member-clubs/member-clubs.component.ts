@@ -54,13 +54,15 @@ sortOptions: SelectItem[];
         this.ids = data;
         console.log(this.ids);
         // tslint:disable-next-line:triple-equals
-        if (this.ids.values() == null){
+        if (this.ids.length == 0){
           this.service.findAllClubsNotIn([0]).subscribe(data => this.items2ClubsMember = data);
-          console.log(this.items2ClubsMember);
+          this.service.findClubsNotIn([0]).subscribe(data => this.itemsClubs = data);
+          console.log('ana f 0', this.items2ClubsMember);
         }else{
           this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+          this.service.findClubsNotIn(this.ids).subscribe(data => this.itemsClubs = data);
+          console.log('ana f else', this.items2ClubsMember);
         }
-        console.log(this.items2ClubsMember);
       });
      });
 

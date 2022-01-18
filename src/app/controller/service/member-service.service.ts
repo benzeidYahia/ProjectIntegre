@@ -438,6 +438,10 @@ export class MemberServiceService {
     console.log(id.reverse());
     return this.http.post<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/clubsM/true', id );
   }
+  public findClubsNotIn(id: Array<number>): Observable<Array<Clubs>> {
+    console.log(id.reverse());
+    return this.http.post<Array<Clubs>>('http://localhost:8036/member/clubs/clubs/status/actif', id );
+  }
   public findClubsActivitie(): Observable<Array<Activite>> {
     console.log(this.clubsMember.clubs.libelle);
     return this.http.get<Array<Activite>>('http://localhost:8036/member/activite/activite/libelle/' + this.clubsMember.clubs.libelle );
