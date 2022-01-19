@@ -1,27 +1,27 @@
-<p-dialog [(visible)]="editClbDialog" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '800px'}" header=" Edite Clube"
+<p-dialog [(visible)]="editClbDialog" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '800px'}" header=" Edit Club"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 
         <div class="p-field">
-            <label for="libelle">Libelle</label>
-            <input [(ngModel)]="clubs.libelle" autofocus id="libelle" pInputText required type="text"/>
+            <label for="libelle" style="color: #0a3e41"><b>Libelle</b></label>
+            <input [(ngModel)]="clubs.libelle" autofocus id="libelle" pInputText class="btn btn-block btn-outline-info form-control" required type="text"/>
         </div>
         <div class="p-field">
-            <label for="description">Categorie</label>
-            <input [(ngModel)]="clubs.categorie" autofocus id="description" pInputText required type="text"/>
+            <label for="description" style="color: #0a3e41"><b>Categorie</b></label>
+            <input [(ngModel)]="clubs.categorie" autofocus id="description" class="btn btn-block btn-outline-info form-control" pInputText required type="text"/>
         </div>
         <div class="p-field">
-            <label for="numeroOrder">Description</label>
-            <textarea [(ngModel)]="clubs.description" autofocus id="numeroOrder" pInputTextarea autoResize="true" required type="number"></textarea>
+            <label for="numeroOrder" style="color: #0a3e41"><b>Description</b></label>
+            <textarea [(ngModel)]="clubs.description" autofocus id="numeroOrder" class="btn btn-block btn-outline-info form-control" pInputTextarea autoResize="true" required type="number"></textarea>
         </div>
         <div class="p-field">
-            <label for="Level">Referent Pedagogique</label>
-            <input [(ngModel)]="clubs.referentPedagogique" autofocus id="Level" pInputText required type="text"/>
+            <label for="Level" style="color: #0a3e41"><b>Referent Pedagogique</b></label>
+            <input [(ngModel)]="clubs.referentPedagogique" autofocus id="Level" class="btn btn-block btn-outline-info form-control" pInputText required type="text"/>
         </div>
         <div class="p-field">
-            <label for="urlImage">Image (Link From drive)</label>
-            <input [(ngModel)]="clubs.image" autofocus id="urlImage" pInputText required type="text"/>
-            <img *ngIf="clubs.image" [src]="urlfind(clubs.image) " style="width: 100%;" id="logo">
+            <label for="urlImage" style="color: #0a3e41"><b>Image (Link From drive)</b></label>
+            <input [(ngModel)]="clubs.image" autofocus id="urlImage" pInputText required class="btn btn-block btn-outline-info form-control" type="text"/>
+            <img *ngIf="clubs.image" [src]="urlfind(clubs.image) " style="width: 100%; margin-top: 1%" id="logo">
 
         </div>
     </ng-template>

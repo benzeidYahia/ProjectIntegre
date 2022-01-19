@@ -1,7 +1,6 @@
 <p-dialog [(visible)]="editProfil" *ngIf="member.id!=null"  [modal]="true" [style]="{width: '800px'}" header=" Edite Profil"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
-
         <div class="p-field">
             <label for="libelle">FirstName</label>
             <input [(ngModel)]="member.nom" autofocus id="libelle"  class="btn btn-block btn-outline-info form-control" pInputText required type="text"/>
