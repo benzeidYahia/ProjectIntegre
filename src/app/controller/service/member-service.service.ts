@@ -450,6 +450,10 @@ export class MemberServiceService {
     console.log(this.clubsMember.clubs.libelle);
     return this.http.get<Array<ClubsMembers>>('http://localhost:8036/member/clubsmembers/libelle/' + this.clubsMember.clubs.libelle + '/etat/1/status/actif' );
   }
+    public ClubsMembers(): Observable<ClubsMembers> {
+        // tslint:disable-next-line:max-line-length
+        return this.http.get<ClubsMembers>('http://localhost:8036/member/clubsmembers/clubsmembers/id/' + this.clubsMember.clubs.id + '/ids/' + this.member.id );
+    }
   public deleteClubsMember(clubsMember: ClubsMembers): Observable<number> {
     return this.http.delete<number>(this.memberUrl + 'clubsmembers/id/' + clubsMember.id);
   }

@@ -28,6 +28,13 @@ export class EditStatusComponent implements OnInit {
   set clubsMember(value: ClubsMembers) {
     this.service.clubsMember2 = value;
   }
+  get clubsMember2(): ClubsMembers {
+    return this.service.clubsMember;
+  }
+
+  set clubsMember2(value: ClubsMembers) {
+    this.service.clubsMember = value;
+  }
   get clubs(): Clubs {
     return this.service.clubs;
   }
@@ -87,6 +94,7 @@ export class EditStatusComponent implements OnInit {
     this.service.EditStatus().subscribe(data => {
       this.service.findClubsActivitie().subscribe(data => this.itemsActivite = data);
       this.service.findClubsMembers().subscribe(data => this.listClubsMember = data);
+      this.service.ClubsMembers().subscribe(data => this.clubsMember2 = data);
       // tslint:disable-next-line:no-shadowed-variable
       this.messageService.add({
         severity: 'success',
@@ -96,6 +104,7 @@ export class EditStatusComponent implements OnInit {
       });
     });
     this.editStatusDialog = false;
+
   }
   ngOnInit(): void {
   }
