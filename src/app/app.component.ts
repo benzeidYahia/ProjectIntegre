@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
     layoutMode = 'Overlay';
 
     lightMenu = false;
-    topbarColor = 'layout-topbar-bluegrey';
+    topbarColor = 'layout-topbar-blue';
 
     inlineUser = false;
     inlineUser2 = false;

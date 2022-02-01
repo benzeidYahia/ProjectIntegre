@@ -124,7 +124,7 @@ export class AppConfigComponent implements OnInit {
 
     themes: any[];
 
-    themeColor = 'bluegrey';
+    themeColor = 'blue';
 
     topbarColors: any[];
 
