@@ -8,21 +8,7 @@
 
             .layout-topbar-logo {
                 margin-left: 0px;
-                margin-right: 1.5em;
-            }
 
-            .layout-topbar-search {
-                margin-left: 0;
-                margin-right: 120px;
-
-                i {
-                    left: auto;
-                    right: 11px;
-                }
-
-                input {
-                    padding: 6px 35px 6px 6px;
-                }
             }
 
             .topbar-menu {
@@ -71,15 +57,7 @@
     .layout-rtl {
         &.layout-wrapper {
             .layout-topbar {
-                .layout-topbar-search {
-                    left: auto;
-                    right: 0;
-                    margin-right: 0;
-                    
-                    i {
-                        left: auto;
-                    }
-                }
+
 
                 .topbar-menu {
                     .user-profile {
