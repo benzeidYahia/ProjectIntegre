@@ -64,6 +64,9 @@ export class ClubsRequestComponent implements OnInit {
       this.service.findRequest().subscribe(data => {
         this.listdemande = data;
       });
+      // tslint:disable-next-line:no-shadowed-variable
+      this.service.findRequest().subscribe(data => this.itemsdemande = data);
+
       // this.updateNewClub();
       this.messageService.add({
         severity: 'success',
