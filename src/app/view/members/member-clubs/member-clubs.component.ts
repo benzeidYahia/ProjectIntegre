@@ -220,15 +220,25 @@ sortOptions: SelectItem[];
       this.itemsClubs = new Array<Clubs>();
       this.service.SaveClubsMember().subscribe(data => {
         this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
+        // this.service.findAllClubs().subscribe(data => this.itemsClubs = data);
         this.service.findClubsMember(this.member.id).subscribe(data => {
           this.itemsClubsMember = data;
           this.service.findClubIds().subscribe( data => {
             this.ids = data;
             console.log(this.ids);
-            this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
-
+            // tslint:disable-next-line:triple-equals
+            if (this.ids.length == 0){
+              this.service.findAllClubsNotIn([0]).subscribe(data => this.items2ClubsMember = data);
+              this.service.findClubsNotIn([0]).subscribe(data => this.itemsClubs = data);
+              console.log('ana f 0', this.items2ClubsMember);
+            }else{
+              this.service.findAllClubsNotIn(this.ids).subscribe(data => this.items2ClubsMember = data);
+              this.service.findClubsNotIn(this.ids).subscribe(data => this.itemsClubs = data);
+              console.log('ana f else', this.items2ClubsMember);
+            }
           });
-        });        this.messageService.add({
+        });
+        this.messageService.add({
           severity: 'success',
           summary: 'Successful',
           detail: 'Clubs added',
